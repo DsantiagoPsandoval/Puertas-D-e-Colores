@@ -9,20 +9,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --purple: #6B21A8;
-    --purple-light: #9333EA;
-    --purple-soft: #F3E8FF;
+    --purple: #753C94;
+    --purple-light: #9F63C2;
+    --purple-soft: #E8D8F3;
     --turquoise: #22D3EE;
     --turquoise-dark: #0EA5E9;
-    --orange: #EA580C;
-    --orange-light: #FB923C;
-    --orange-soft: #FFF7ED;
-    --green: #16A34A;
-    --green-light: #4ADE80;
-    --green-soft: #F0FDF4;
-    --navy: #0F1F3D;
-    --navy-mid: #1E3A5F;
-    --gold: #F59E0B;
+    --orange: #F68B00;
+    --orange-light: #F9A623;
+    --orange-soft: #FFF3E0;
+    --green: #7BC13D;
+    --green-light: #A6D86D;
+    --green-soft: #EBF7DE;
+    --navy: #0F3F91;
+    --navy-mid: #1C549F;
+    --gold: #E4C22A;
     --white: #FFFFFF;
     --gray-50: #F9FAFB;
     --gray-100: #F3F4F6;
@@ -115,18 +115,18 @@
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(45, 35, 119, 0.92) 0%, rgba(31, 79, 142, 0.92) 38%, rgba(35, 115, 185, 0.85) 78%, rgba(35, 95, 155, 0.9) 100%);
+    background: linear-gradient(140deg, rgba(15,63,145,0.92) 0%, rgba(117,60,148,0.88) 42%, rgba(34,211,238,0.72) 78%);
   }
   .hero-bg::after {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(15, 31, 61, 0.24), rgba(15, 31, 61, 0.34));
+    background: linear-gradient(180deg, rgba(15, 63, 145, 0.22), rgba(15, 63, 145, 0.34));
     pointer-events: none;
   }
   .hero-pattern {
     position: absolute; inset: 0; opacity: 0.08;
     background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.72) 1px, transparent 0);
-    background-size: 38px 38px;
+    background-size: 40px 40px;
   }
   .hero-orbs {
     position: absolute; inset: 0; pointer-events: none; overflow: hidden;
@@ -165,8 +165,7 @@
   }
   .hero-title em {
     font-style: normal;
-    color: #FFEB3B;
-    text-shadow: 0 0 14px rgba(255, 235, 59, 0.4);
+    color: var(--gold);
     font-weight: 800;
   }
   .hero-sub {
@@ -994,7 +993,7 @@
         <!-- MISIÓN FLIP -->
         <div class="flip-card" data-aos data-delay="0">
           <div class="flip-inner">
-            <div class="flip-front" style="background:linear-gradient(135deg,#6B21A8 0%,#4C1D95 100%);">
+            <div class="flip-front" style="background:linear-gradient(135deg,#8B5CF6 0%,#7C3AED 100%);">
               <div class="flip-front-deco"></div>
               <div class="flip-icon-wrap">💜</div>
               <h3 class="flip-front-title">Misión</h3>
@@ -1013,7 +1012,7 @@
         <!-- VISIÓN FLIP -->
         <div class="flip-card" data-aos data-delay="150">
           <div class="flip-inner">
-            <div class="flip-front" style="background:linear-gradient(135deg,#B45309 0%,#92400E 100%);">
+            <div class="flip-front" style="background:linear-gradient(135deg,#F59E0B 0%,#D97706 100%);">
               <div class="flip-front-deco"></div>
               <div class="flip-icon-wrap">🔭</div>
               <h3 class="flip-front-title">Visión</h3>
@@ -1032,7 +1031,7 @@
         <!-- VALORES FLIP -->
         <div class="flip-card" data-aos data-delay="300">
           <div class="flip-inner">
-            <div class="flip-front" style="background:linear-gradient(135deg,#15803D 0%,#14532D 100%);">
+            <div class="flip-front" style="background:linear-gradient(135deg,#16A34A 0%,#15803D 100%);">
               <div class="flip-front-deco"></div>
               <div class="flip-icon-wrap">🌟</div>
               <h3 class="flip-front-title">Valores</h3>
