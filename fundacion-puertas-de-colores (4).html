@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fundación Puertas de Colores | Transformamos vidas</title>
+<meta name="description" content="Fundación Puertas de Colores - Trabajamos con mujeres, niñas y comunidades vulnerables para construir territorios más justos, seguros y sostenibles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #6B21A8;
+    --purple-light: #9333EA;
+    --purple-soft: #F3E8FF;
+    --orange: #EA580C;
+    --orange-light: #FB923C;
+    --orange-soft: #FFF7ED;
+    --green: #16A34A;
+    --green-light: #4ADE80;
+    --green-soft: #F0FDF4;
+    --navy: #0F1F3D;
+    --navy-mid: #1E3A5F;
+    --gold: #F59E0B;
+    --white: #FFFFFF;
+    --gray-50: #F9FAFB;
+    --gray-100: #F3F4F6;
+    --gray-300: #D1D5DB;
+    --gray-600: #4B5563;
+    --gray-800: #1F2937;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--gray-800);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 2rem;
+    background: transparent;
+    transition: background 0.4s, box-shadow 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(15,31,61,0.97);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    height: 52px; width: auto;
+    border-radius: 8px;
+    background: white;
+    padding: 2px;
+  }
+  .logo-text { color: var(--white); }
+  .logo-text strong { display: block; font-family: var(--font-display); font-size: 1rem; font-weight: 700; line-height: 1.2; }
+  .logo-text span { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8; }
+  .nav-links {
+    display: flex; align-items: center; gap: 1.5rem; list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none; font-size: 0.875rem; font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .btn-donar {
+    background: var(--gold); color: var(--navy) !important;
+    padding: 0.5rem 1.25rem; border-radius: 50px;
+    font-weight: 700 !important; transition: transform 0.2s, box-shadow 0.2s !important;
+  }
+  .btn-donar:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(245,158,11,0.4); }
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: white; margin: 5px 0; transition: 0.3s;
+  }
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: var(--navy); padding: 100px 2rem 2rem;
+    flex-direction: column; gap: 1.5rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: white; text-decoration: none; font-size: 1.25rem; font-weight: 500;
+    border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--purple) 0%, var(--gold) 35%, #1E1047 100%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0; opacity: 0.08;
+    background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.8) 1px, transparent 0);
+    background-size: 40px 40px;
+  }
+  .hero-orbs {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  }
+  .orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); opacity: 0.28;
+  }
+  .orb-1 { width: 500px; height: 500px; background: var(--purple-light); top: -100px; right: -100px; animation: float 8s ease-in-out infinite; }
+  .orb-2 { width: 350px; height: 350px; background: var(--gold); bottom: 50px; left: -50px; animation: float 10s ease-in-out infinite reverse; }
+  .orb-3 { width: 250px; height: 250px; background: rgba(255,255,255,0.22); top: 50%; left: 40%; animation: float 6s ease-in-out infinite 2s; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-30px)} }
+
+  .hero-content {
+    position: relative; z-index: 2; text-align: center;
+    max-width: 900px; padding: 0 2rem;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: white; padding: 0.5rem 1.25rem; border-radius: 50px;
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem;
+    backdrop-filter: blur(8px);
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .hero-badge-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--gold);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 900;
+    color: white; line-height: 1.15; margin-bottom: 1.25rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-title em { font-style: normal; color: var(--gold); }
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem); color: rgba(255,255,255,0.8);
+    max-width: 640px; margin: 0 auto 2.5rem; line-height: 1.7;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 0.875rem 2rem; border-radius: 50px; font-weight: 700;
+    text-decoration: none; font-size: 0.95rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(245,158,11,0.4); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.6); color: white;
+    padding: 0.875rem 2rem; border-radius: 50px; font-weight: 600;
+    text-decoration: none; font-size: 0.95rem;
+    transition: background 0.2s, border-color 0.2s;
+    display: inline-block; backdrop-filter: blur(8px);
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: white; }
+
+  .hero-stats {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to right, rgba(107,33,168,0.9), rgba(30,16,71,0.95));
+    backdrop-filter: blur(10px);
+    display: flex; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.8s ease both;
+  }
+  .stat-item {
+    padding: 1.5rem 3rem; text-align: center; color: white;
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--font-display); font-size: 2rem; font-weight: 900;
+    color: var(--gold); display: block; line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; }
+
+  .scroll-indicator {
+    position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.6); font-size: 0.75rem; letter-spacing: 0.1em;
+    animation: bounce 2s infinite;
+  }
+  .scroll-indicator svg { opacity: 0.6; }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ─── SECTIONS SHARED ─── */
+  section { padding: 6rem 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.35rem 1rem; border-radius: 50px;
+    margin-bottom: 1rem;
+  }
+  .tag-purple { background: var(--purple-soft); color: var(--purple); }
+  .tag-green { background: var(--green-soft); color: var(--green); }
+  .tag-orange { background: var(--orange-soft); color: var(--orange); }
+  .tag-navy { background: rgba(15,31,61,0.08); color: var(--navy); }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800;
+    color: var(--navy); line-height: 1.2; margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1.05rem; color: var(--gray-600); line-height: 1.7; max-width: 580px;
+  }
+
+  /* ─── SOBRE NOSOTRAS ─── */
+  #nosotras { background: var(--gray-50); }
+  .nosotras-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .nosotras-img-wrap {
+    position: relative;
+  }
+  .nosotras-img-main {
+    width: 100%; aspect-ratio: 4/5; object-fit: cover;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--purple) 0%, var(--navy) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem; overflow: hidden;
+  }
+  .nosotras-img-main img { width:100%; height:100%; object-fit:cover; }
+  .nosotras-badge-float {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--gold); border-radius: 16px; padding: 1.25rem 1.5rem;
+    text-align: center; box-shadow: 0 8px 30px rgba(245,158,11,0.35);
+  }
+  .nosotras-badge-float .num { font-family: var(--font-display); font-size: 2rem; font-weight: 900; color: var(--navy); display: block; line-height: 1; }
+  .nosotras-badge-float .lbl { font-size: 0.75rem; font-weight: 600; color: var(--navy); opacity: 0.7; }
+  .propósito-card {
+    background: var(--navy); color: white;
+    border-radius: 16px; padding: 2rem; margin: 2rem 0;
+    position: relative; overflow: hidden;
+  }
+  .propósito-card::before {
+    content: ''; position: absolute; top: 0; right: 0;
+    width: 100px; height: 100px; border-radius: 50%;
+    background: var(--purple-light); opacity: 0.2;
+    transform: translate(30px, -30px);
+  }
+  .propósito-card p {
+    font-size: 1rem; line-height: 1.7; position: relative; z-index: 1;
+  }
+  .valores-list { list-style: none; }
+  .valores-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 0.75rem 0; border-bottom: 1px solid var(--gray-100); font-size: 0.95rem; color: var(--gray-600);
+  }
+  .valores-list li:last-child { border-bottom: none; }
+  .valor-icon {
+    width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 0.75rem;
+  }
+  .quote-block {
+    border-left: 4px solid var(--purple); padding: 1rem 1.5rem;
+    background: var(--purple-soft); border-radius: 0 12px 12px 0;
+    font-family: var(--font-display); font-size: 1rem; color: var(--purple); font-style: italic;
+    line-height: 1.6; margin-top: 2rem;
+  }
+
+  /* ─── MVV CARDS (legacy-compat) ─── */
+  .mvv-card {
+    background: white; border-radius: 20px;
+    overflow: hidden; box-shadow: 0 6px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .mvv-card:hover { transform: translateY(-8px); box-shadow: 0 16px 50px rgba(0,0,0,0.16); }
+  .mvv-photo {
+    height: 220px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mvv-photo-1 { background: linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%); }
+  .mvv-photo-2 { background: linear-gradient(135deg, #e9d5ff 0%, #a78bfa 100%); }
+  .mvv-photo-3 { background: linear-gradient(135deg, #d1fae5 0%, #6ee7b7 100%); }
+  .mvv-avatar { font-size: 5rem; position: relative; z-index: 2; }
+  .mvv-blob {
+    position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+    width: 140%; height: 80px; z-index: 1;
+    border-radius: 50% 50% 0 0 / 60% 60% 0 0;
+  }
+  .mvv-blob-orange { background: var(--orange); }
+  .mvv-blob-gold { background: var(--gold); }
+  .mvv-body { background: white; padding: 2rem; position: relative; overflow: hidden; }
+  .mvv-blob-top {
+    position: absolute; top: -35px; right: -15px;
+    width: 110px; height: 90px;
+    border-radius: 0 0 60% 60% / 0 0 50% 50%;
+    transform: rotate(20deg);
+  }
+  .mvv-blob-top-orange { background: var(--orange); opacity: 0.8; }
+  .mvv-blob-top-gold { background: var(--gold); opacity: 0.8; }
+  .mvv-title {
+    font-family: var(--font-display); font-size: 1.5rem; font-weight: 800;
+    color: var(--navy); margin-bottom: 0.875rem; position: relative; z-index: 1;
+  }
+  .mvv-text { font-size: 0.9rem; color: var(--gray-600); line-height: 1.7; position: relative; z-index: 1; }
+  .valor-pill {
+    display: inline-block; padding: 0.3rem 0.75rem; border-radius: 50px;
+    background: var(--purple-soft); color: var(--purple);
+    font-size: 0.78rem; font-weight: 700;
+  }
+  @media (max-width: 900px) {
+    .mvv-grid { grid-template-columns: 1fr !important; max-width: 480px; margin: 0 auto; }
+  }
+
+  /* ─── IMPACTO ─── */
+  #impacto {
+    background: linear-gradient(135deg, var(--navy) 0%, #1E1047 50%, #1a3a5c 100%);
+    position: relative; overflow: hidden;
+  }
+  #impacto::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.04) 1px, transparent 0);
+    background-size: 30px 30px;
+  }
+  #impacto .container { position: relative; z-index: 1; }
+  .impacto-header { text-align: center; margin-bottom: 4rem; }
+  .impacto-header .section-title { color: white; }
+  .impacto-header .section-sub { color: rgba(255,255,255,0.7); margin: 0 auto; }
+  .impact-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+  }
+  .impact-card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px; padding: 2rem; text-align: center;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s, background 0.3s;
+  }
+  .impact-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.12); }
+  .impact-icon {
+    font-size: 2.5rem; margin-bottom: 1rem; display: block;
+  }
+  .impact-num {
+    font-family: var(--font-display); font-size: 2.8rem; font-weight: 900;
+    color: var(--gold); display: block; line-height: 1;
+  }
+  .impact-label { color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.4; }
+
+  /* ─── EJES TEMÁTICOS ─── */
+  #ejes { background: white; }
+  .ejes-header { text-align: center; margin-bottom: 4rem; }
+  .ejes-header .section-sub { margin: 0 auto; }
+  .ejes-tabs {
+    display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;
+  }
+  .eje-tab {
+    padding: 0.75rem 1.75rem; border-radius: 50px; cursor: pointer;
+    font-weight: 600; font-size: 0.9rem; border: 2px solid;
+    transition: all 0.3s;
+  }
+  .eje-tab.purple { border-color: var(--purple); color: var(--purple); }
+  .eje-tab.purple.active, .eje-tab.purple:hover { background: var(--purple); color: white; }
+  .eje-tab.green { border-color: var(--green); color: var(--green); }
+  .eje-tab.green.active, .eje-tab.green:hover { background: var(--green); color: white; }
+  .eje-tab.orange { border-color: var(--orange); color: var(--orange); }
+  .eje-tab.orange.active, .eje-tab.orange:hover { background: var(--orange); color: white; }
+
+  .eje-panel { display: none; }
+  .eje-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+  .eje-content-card {
+    border-radius: 24px; padding: 3rem; color: white; position: relative; overflow: hidden;
+  }
+  .eje-content-card.purple-bg { background: linear-gradient(135deg, var(--purple) 0%, #4C1D95 100%); }
+  .eje-content-card.green-bg { background: linear-gradient(135deg, var(--green) 0%, #14532D 100%); }
+  .eje-content-card.orange-bg { background: linear-gradient(135deg, var(--orange) 0%, #9A3412 100%); }
+  .eje-content-card::after {
+    content: ''; position: absolute; bottom: -30px; right: -30px;
+    width: 150px; height: 150px; border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+  }
+  .eje-icon-big { font-size: 3rem; margin-bottom: 1rem; display: block; }
+  .eje-content-card h3 {
+    font-family: var(--font-display); font-size: 1.6rem; font-weight: 800;
+    margin-bottom: 1rem; line-height: 1.25;
+  }
+  .eje-content-card p { opacity: 0.9; line-height: 1.7; margin-bottom: 1.5rem; }
+  .eje-items { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .eje-items li {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.9rem; opacity: 0.95;
+  }
+  .eje-items li::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.7); flex-shrink: 0;
+  }
+  .eje-side { display: flex; flex-direction: column; gap: 1.5rem; }
+  .eje-mini-card {
+    background: var(--gray-50); border-radius: 16px; padding: 1.5rem;
+    border-left: 4px solid;
+    transition: transform 0.2s;
+  }
+  .eje-mini-card:hover { transform: translateX(6px); }
+  .eje-mini-card.border-purple { border-color: var(--purple); }
+  .eje-mini-card.border-green { border-color: var(--green); }
+  .eje-mini-card.border-orange { border-color: var(--orange); }
+  .eje-mini-card h4 { font-weight: 700; color: var(--navy); margin-bottom: 0.25rem; font-size: 0.95rem; }
+  .eje-mini-card p { font-size: 0.85rem; color: var(--gray-600); line-height: 1.5; }
+  .eje-stat-box {
+    border-radius: 16px; padding: 1.5rem; text-align: center; color: white;
+  }
+  .eje-stat-box.purple-bg { background: var(--purple); }
+  .eje-stat-box.green-bg { background: var(--green); }
+  .eje-stat-box.orange-bg { background: var(--orange); }
+  .eje-stat-box .big-num { font-family: var(--font-display); font-size: 2.2rem; font-weight: 900; display: block; }
+  .eje-stat-box .lbl { font-size: 0.85rem; opacity: 0.85; }
+
+  /* ─── PROYECTOS ─── */
+  #proyectos { background: var(--gray-50); }
+  .proyectos-header { text-align: center; margin-bottom: 3rem; }
+  .proyectos-filters {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem;
+  }
+  .filter-btn {
+    padding: 0.5rem 1.25rem; border-radius: 50px; font-weight: 600; font-size: 0.85rem;
+    cursor: pointer; border: 2px solid var(--gray-300); background: white; color: var(--gray-600);
+    transition: all 0.2s;
+  }
+  .filter-btn.active-all, .filter-btn:hover { background: var(--navy); color: white; border-color: var(--navy); }
+  .filter-btn.active-purple { background: var(--purple); color: white; border-color: var(--purple); }
+  .filter-btn.active-green { background: var(--green); color: white; border-color: var(--green); }
+  .filter-btn.active-orange { background: var(--orange); color: white; border-color: var(--orange); }
+
+  .project-highlight {
+    background: linear-gradient(135deg, var(--purple) 0%, #312e81 100%);
+    border-radius: 28px; padding: 3rem; color: white;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    margin-bottom: 3rem;
+  }
+  .project-highlight .badge {
+    display: inline-block; background: rgba(255,255,255,0.2); padding: 0.35rem 0.875rem;
+    border-radius: 50px; font-size: 0.75rem; font-weight: 600; margin-bottom: 1rem;
+  }
+  .project-highlight h3 {
+    font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.25;
+  }
+  .project-highlight p { opacity: 0.9; line-height: 1.7; margin-bottom: 1.5rem; font-size: 0.95rem; }
+  .project-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .project-meta span {
+    font-size: 0.8rem; opacity: 0.75;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .project-results { display: flex; flex-direction: column; gap: 1rem; }
+  .result-item {
+    background: rgba(255,255,255,0.12); border-radius: 12px; padding: 1rem 1.25rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .result-num { font-family: var(--font-display); font-size: 1.75rem; font-weight: 900; color: var(--gold); white-space: nowrap; }
+  .result-desc { font-size: 0.85rem; opacity: 0.9; line-height: 1.4; }
+
+
+  /* ─── PROYECTOS GRID ─── */
+  .proy-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+  .proy-card {
+    background:white; border-radius:20px; overflow:hidden;
+    box-shadow:0 4px 20px rgba(0,0,0,0.08); transition:transform 0.3s,box-shadow 0.3s;
+    display:flex; flex-direction:column;
+  }
+  .proy-card:hover { transform:translateY(-6px); box-shadow:0 14px 40px rgba(0,0,0,0.14); }
+  .proy-card-header { padding:0.75rem 1.25rem; display:flex; justify-content:space-between; align-items:center; }
+  .proy-estado { font-size:0.73rem; font-weight:700; padding:0.3rem 0.7rem; border-radius:50px; background:rgba(255,255,255,0.25); color:white; }
+  .proy-linea { color:rgba(255,255,255,0.9); font-size:0.73rem; font-weight:600; }
+  .proy-img-wrap { height:180px; overflow:hidden; background:var(--gray-100); }
+  .proy-body { padding:1.25rem; flex:1; display:flex; flex-direction:column; gap:0.6rem; }
+  .proy-title { font-family:var(--font-display); font-size:0.93rem; font-weight:800; color:var(--navy); line-height:1.4; }
+  .proy-meta-row { display:flex; flex-direction:column; gap:0.25rem; }
+  .proy-meta-row span { font-size:0.77rem; color:var(--gray-600); }
+  .proy-ref { font-size:0.72rem; color:var(--gray-600); font-style:italic; }
+  .proy-objetivo { font-size:0.82rem; color:var(--gray-600); line-height:1.6; background:var(--gray-50); border-radius:10px; padding:0.7rem; }
+  .proy-objetivo strong { color:var(--navy); }
+  .proy-toggle {
+    background:none; border:2px solid var(--purple); color:var(--purple);
+    border-radius:50px; padding:0.4rem 1rem; font-size:0.78rem; font-weight:700;
+    cursor:pointer; transition:all 0.2s; margin-top:auto; align-self:flex-start;
+  }
+  .proy-toggle:hover,
+  .proy-toggle.open { background:var(--purple); color:white; }
+  .proy-results { font-size:0.82rem; line-height:1.6; color:var(--gray-600); background:var(--purple-soft); border-radius:10px; padding:0.875rem; }
+  .proy-results ul { padding-left:1.2rem; }
+  .proy-results li { margin-bottom:0.35rem; }
+  .pf-active { background:var(--navy) !important; color:white !important; border-color:var(--navy) !important; }
+  @media(max-width:900px) { .proy-grid { grid-template-columns:1fr; max-width:500px; margin:0 auto; } }
+
+  /* ─── BLOG ─── */
+  #blog { background: white; }
+  .blog-header { text-align: center; margin-bottom: 3rem; }
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .blog-card {
+    border-radius: 20px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: white;
+  }
+  .blog-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+  .blog-img {
+    height: 200px; display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; position: relative; overflow: hidden;
+  }
+  .blog-img-1 { background: linear-gradient(135deg, var(--purple-soft), #ddd6fe); }
+  .blog-img-2 { background: linear-gradient(135deg, var(--green-soft), #bbf7d0); }
+  .blog-img-3 { background: linear-gradient(135deg, var(--orange-soft), #fed7aa); }
+  .blog-cat {
+    position: absolute; top: 12px; left: 12px;
+    padding: 0.3rem 0.75rem; border-radius: 50px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  }
+  .blog-body { padding: 1.5rem; }
+  .blog-date { font-size: 0.8rem; color: var(--gray-600); margin-bottom: 0.5rem; }
+  .blog-card h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.75rem; line-height: 1.4; }
+  .blog-card p { font-size: 0.875rem; color: var(--gray-600); line-height: 1.6; margin-bottom: 1rem; }
+  .read-more {
+    font-size: 0.85rem; font-weight: 700; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 4px; transition: gap 0.2s;
+  }
+  .read-more:hover { gap: 8px; }
+  .read-more.purple { color: var(--purple); }
+  .read-more.green { color: var(--green); }
+  .read-more.orange { color: var(--orange); }
+
+  /* ─── TESTIMONIOS ─── */
+  #testimonios {
+    background: linear-gradient(135deg, #f8f4ff 0%, #fff7ed 50%, #f0fdf4 100%);
+  }
+  .testimonios-header { text-align: center; margin-bottom: 3rem; }
+  .slider-wrap { position: relative; overflow: hidden; }
+  .slider-track {
+    display: flex; transition: transform 0.5s ease; gap: 2rem;
+  }
+  .testimonial-card {
+    min-width: calc(33.333% - 1.33rem); background: white; border-radius: 24px;
+    padding: 2.5rem; box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    position: relative;
+  }
+  .quote-mark { font-family: var(--font-display); font-size: 4rem; color: var(--purple-soft); line-height: 0.5; margin-bottom: 1rem; display: block; }
+  .testimonial-card p { font-size: 0.95rem; color: var(--gray-600); line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+  .author-avatar.purple { background: var(--purple-soft); }
+  .author-avatar.green { background: var(--green-soft); }
+  .author-avatar.orange { background: var(--orange-soft); }
+  .author-name { font-weight: 700; color: var(--navy); font-size: 0.9rem; }
+  .author-role { font-size: 0.8rem; color: var(--gray-600); }
+  .slider-controls { display: flex; justify-content: center; gap: 12px; margin-top: 2rem; }
+  .slider-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gray-300); cursor: pointer; transition: all 0.3s; border: none; }
+  .slider-dot.active { background: var(--purple); transform: scale(1.3); }
+
+  /* ─── TRANSPARENCIA ─── */
+  #transparencia { background: var(--gray-50); }
+  .transparencia-header { text-align: center; margin-bottom: 3rem; }
+  .docs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .doc-card {
+    background: white; border-radius: 16px; padding: 1.75rem;
+    border: 1px solid var(--gray-100); display: flex; align-items: center; gap: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s; cursor: pointer;
+  }
+  .doc-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+  .doc-icon {
+    width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+  }
+  .doc-icon.red { background: #FEF2F2; }
+  .doc-icon.blue { background: #EFF6FF; }
+  .doc-icon.green { background: var(--green-soft); }
+  .doc-info h4 { font-weight: 700; color: var(--navy); font-size: 0.9rem; margin-bottom: 2px; }
+  .doc-info p { font-size: 0.8rem; color: var(--gray-600); }
+  .doc-download { margin-left: auto; color: var(--gray-300); font-size: 1.1rem; }
+
+  /* ─── CONTACTO ─── */
+  #contacto { background: white; }
+  .contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contacto-info h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--navy); margin-bottom: 1rem; }
+  .contacto-info p { color: var(--gray-600); line-height: 1.7; margin-bottom: 2rem; }
+  .contact-methods { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-method {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem; border-radius: 12px; background: var(--gray-50);
+  }
+  .contact-method-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-method-icon.purple { background: var(--purple-soft); }
+  .contact-method-icon.green { background: var(--green-soft); }
+  .contact-method-icon.orange { background: var(--orange-soft); }
+  .contact-method-icon.navy { background: rgba(15,31,61,0.08); }
+  .contact-method strong { display: block; font-size: 0.85rem; color: var(--navy); }
+  .contact-method span { font-size: 0.8rem; color: var(--gray-600); }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 0.4rem; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 0.875rem 1rem; border: 2px solid var(--gray-100);
+    border-radius: 12px; font-family: var(--font-body); font-size: 0.9rem;
+    color: var(--gray-800); background: var(--gray-50); outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--purple); background: white; }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .btn-submit {
+    width: 100%; background: var(--navy); color: white; border: none; cursor: pointer;
+    padding: 1rem; border-radius: 12px; font-family: var(--font-body); font-size: 1rem;
+    font-weight: 700; transition: background 0.2s, transform 0.2s;
+  }
+  .btn-submit:hover { background: var(--purple); transform: translateY(-2px); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy); color: white; padding: 4rem 2rem 2rem;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand p { font-size: 0.875rem; opacity: 0.7; line-height: 1.7; margin: 1rem 0; }
+  .footer-brand .socials { display: flex; gap: 10px; margin-top: 1rem; }
+  .social-btn {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; cursor: pointer; transition: background 0.2s;
+    text-decoration: none; color: white;
+  }
+  .social-btn:hover { background: var(--purple); }
+  .footer-col h4 { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.5; margin-bottom: 1.25rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.6rem; }
+  .footer-col a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: gap;
+  }
+  .footer-bottom p { font-size: 0.8rem; opacity: 0.5; }
+
+  /* ─── WHATSAPP FLOAT ─── */
+  .whatsapp-float {
+    position: fixed; bottom: 30px; right: 30px; z-index: 200;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25D366; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+  }
+  .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37,211,102,0.5); }
+  .whatsapp-float svg { width: 28px; height: 28px; fill: white; }
+
+  /* ─── AOS-like animations ─── */
+  [data-aos] { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  [data-aos].aos-visible { opacity: 1; transform: translateY(0); }
+  [data-aos="fade-left"] { transform: translateX(-30px); }
+  [data-aos="fade-left"].aos-visible { transform: translateX(0); }
+  [data-aos="fade-right"] { transform: translateX(30px); }
+  [data-aos="fade-right"].aos-visible { transform: translateX(0); }
+  [data-aos="zoom-in"] { transform: scale(0.9); }
+  [data-aos="zoom-in"].aos-visible { transform: scale(1); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .impact-grid { grid-template-columns: repeat(2, 1fr); }
+    .nosotras-grid { grid-template-columns: 1fr; }
+    .nosotras-img-wrap { max-width: 400px; }
+    .project-highlight { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .contacto-grid { grid-template-columns: 1fr; }
+    .docs-grid { grid-template-columns: 1fr 1fr; }
+    .eje-panel.active { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .hero-stats { position: relative; }
+    .stat-item { padding: 1rem 1.5rem; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .stat-item:last-child { border-bottom: none; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .testimonial-card { min-width: 85%; }
+    .docs-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .impact-grid { grid-template-columns: 1fr 1fr; }
+    section { padding: 4rem 1.25rem; }
+  }
+
+  /* ─── NOSOTRAS HERO ─── */
+  .nos-hero { position:relative; min-height:auto; display:flex; align-items:center; padding-bottom:2rem; }
+  .nos-hero-bg { position:absolute; inset:0; background:linear-gradient(135deg,#0F1F3D 0%,#3B0764 35%,#1E1047 100%); }
+  .nos-hero-overlay { position:absolute; inset:0; opacity:0.1; background-image:radial-gradient(circle at 2px 2px,rgba(255,255,255,0.08) 1px,transparent 0); background-size:35px 35px; }
+  .nos-hero-content { position:relative; z-index:2; display:grid; grid-template-columns:1fr; gap:2.5rem; align-items:flex-start; padding:5rem 2rem 3rem; max-width:1200px; margin:0 auto; }
+  .nos-hero-cards { display:grid; grid-template-columns:repeat(3, minmax(180px, 1fr)); gap:1.5rem; }
+  .nos-hero-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 24px;
+    padding: 1.75rem;
+    color: white;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .nos-hero-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255,255,255,0.28);
+    background: rgba(255,255,255,0.12);
+  }
+  .nos-card-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .nos-hero-card h3 { font-family: var(--font-display); font-size: 1.35rem; line-height: 1.2; margin-bottom: 0.85rem; }
+  .nos-hero-card p { color: rgba(255,255,255,0.86); line-height: 1.8; }
+  .nos-ribbon { background:linear-gradient(90deg,var(--purple) 0%,var(--navy) 100%); padding:1.75rem 2rem; }
+  .nos-ribbon-inner { display:flex; align-items:center; gap:1.5rem; max-width:1200px; margin:0 auto; }
+  .nos-ribbon-icon { font-size:2.5rem; flex-shrink:0; }
+  /* FLIP CARDS */
+  .mvv-flip-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+  .flip-card { height:380px; perspective:1200px; cursor:pointer; }
+  .flip-inner { position:relative; width:100%; height:100%; transition:transform 0.7s cubic-bezier(0.4,0.2,0.2,1); transform-style:preserve-3d; }
+  .flip-card:hover .flip-inner,
+  .flip-card.flipped .flip-inner { transform:rotateY(180deg); }
+  .flip-front, .flip-back { position:absolute; inset:0; border-radius:24px; backface-visibility:hidden; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:2.5rem 2rem; }
+  .flip-front-deco { position:absolute; top:-40px; right:-40px; width:160px; height:160px; border-radius:50%; background:rgba(255,255,255,0.08); }
+  .flip-front-wave { position:absolute; bottom:-2px; left:0; right:0; height:60px; background:rgba(255,255,255,0.07); border-radius:50% 50% 0 0/30px 30px 0 0; }
+  .flip-icon-wrap { font-size:3.5rem; margin-bottom:1rem; position:relative; z-index:1; animation:floatIcon 3s ease-in-out infinite; }
+  @keyframes floatIcon { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  .flip-front-title { font-family:var(--font-display); font-size:1.8rem; font-weight:900; color:white; position:relative; z-index:1; }
+  .flip-front-hint { font-size:0.8rem; color:rgba(255,255,255,0.6); margin-top:0.5rem; position:relative; z-index:1; }
+  .flip-back { transform:rotateY(180deg); padding:2rem; align-items:flex-start; justify-content:flex-start; box-shadow:0 20px 50px rgba(0,0,0,0.15); }
+  .flip-back-accent { position:absolute; top:0; left:0; right:0; height:6px; }
+  .flip-back-title { font-family:var(--font-display); font-size:1.4rem; font-weight:800; margin:1rem 0 0.875rem; }
+  .flip-back-text { font-size:0.82rem; line-height:1.75; color:var(--gray-600); overflow-y:auto; max-height:200px; }
+  .flip-back-tag { margin-top:1rem; padding:0.35rem 0.875rem; border-radius:50px; font-size:0.75rem; font-weight:700; flex-shrink:0; }
+  .flip-pill { padding:0.3rem 0.7rem; border-radius:50px; font-size:0.75rem; font-weight:700; }
+  /* QUOTE STRIP */
+  .nos-quote-strip { background:linear-gradient(135deg,#F3E8FF 0%,#FFF7ED 50%,#DCFCE7 100%); padding:4rem 2rem; }
+  .nos-quote-marks { font-family:var(--font-display); font-size:6rem; color:var(--purple); line-height:0.5; margin-bottom:1.5rem; opacity:0.3; }
+  .nos-quote-text { font-family:var(--font-display); font-size:1.3rem; color:var(--navy); font-style:italic; line-height:1.6; max-width:700px; margin:0 auto 1rem; }
+  .nos-quote-author { font-size:0.85rem; color:var(--gray-600); font-weight:600; letter-spacing:0.05em; }
+  @media(max-width:900px) {
+    .nos-hero-content { grid-template-columns:1fr; padding:3rem 1.5rem; }
+    .nos-hero-cards { grid-template-columns:1fr; }
+    .nos-photo-collage { display:none; }
+    .mvv-flip-grid { grid-template-columns:1fr; }
+    .flip-card { height:auto; perspective:none; }
+    .flip-card:hover .flip-inner { transform:none; }
+    .flip-front { position:relative; transform:none; backface-visibility:visible; border-radius:20px 20px 0 0; height:120px; }
+    .flip-back { position:relative; transform:none; backface-visibility:visible; border-radius:0 0 20px 20px; }
+  }
+
+
+  /* ─── PROJECT CARDS (pc) ─── */
+  .pf-bar { display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center; margin-bottom:3rem; }
+  .pf-btn {
+    display:flex; align-items:center; gap:0.5rem;
+    padding:0.6rem 1.4rem; border-radius:50px; font-size:0.85rem; font-weight:600;
+    cursor:pointer; border:2px solid var(--gray-300); background:white; color:var(--gray-600);
+    transition:all 0.25s;
+  }
+  .pf-btn:hover { border-color:var(--navy); color:var(--navy); }
+  .pf-btn.pf-active { background:var(--navy); color:white; border-color:var(--navy); }
+  .pf-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+
+  .pc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+
+  .pc {
+    background:white; border-radius:24px; overflow:hidden;
+    box-shadow:0 6px 30px rgba(0,0,0,0.08);
+    transition:transform 0.3s, box-shadow 0.3s;
+    display:flex; flex-direction:column;
+  }
+  .pc:hover { transform:translateY(-8px); box-shadow:0 20px 55px rgba(0,0,0,0.14); }
+
+  .pc-top {
+    padding:2rem; position:relative; overflow:hidden;
+    min-height:160px; display:flex; flex-direction:column; justify-content:flex-end;
+  }
+  .pc-top-deco {
+    position:absolute; top:-40px; right:-40px;
+    width:180px; height:180px; border-radius:50%;
+    background:rgba(255,255,255,0.07);
+  }
+  .pc-top-deco::after {
+    content:''; position:absolute; top:30px; left:30px;
+    width:120px; height:120px; border-radius:50%;
+    background:rgba(255,255,255,0.05);
+  }
+  .pc-badges { display:flex; gap:0.5rem; margin-bottom:0.875rem; flex-wrap:wrap; }
+  .pc-badge-estado {
+    padding:0.3rem 0.8rem; border-radius:50px; font-size:0.72rem; font-weight:700;
+    background:rgba(255,255,255,0.2); color:white; backdrop-filter:blur(4px);
+  }
+  .pc-badge-estado.done { background:rgba(74,222,128,0.25); }
+  .pc-badge-estado.active { background:rgba(96,165,250,0.3); }
+  .pc-badge-linea { padding:0.3rem 0.8rem; border-radius:50px; font-size:0.72rem; font-weight:700; background:rgba(255,255,255,0.15); color:rgba(255,255,255,0.9); }
+  .pc-title {
+    font-family:var(--font-display); font-size:1.1rem; font-weight:800; color:white;
+    line-height:1.3; position:relative; z-index:1;
+  }
+  .pc-subtitle { font-size:0.8rem; color:rgba(255,255,255,0.75); margin-top:0.35rem; position:relative; z-index:1; }
+
+  .pc-body { padding:1.75rem; flex:1; display:flex; flex-direction:column; gap:1.25rem; }
+
+  .pc-meta-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
+  .pc-meta-item {
+    background:var(--gray-50); border-radius:10px; padding:0.75rem;
+    display:flex; flex-direction:column; gap:0.2rem;
+  }
+  .pc-meta-label { font-size:0.72rem; color:var(--gray-600); font-weight:600; text-transform:uppercase; letter-spacing:0.05em; }
+  .pc-meta-val { font-size:0.82rem; color:var(--navy); font-weight:600; line-height:1.4; }
+
+  .pc-section { display:flex; flex-direction:column; gap:0.5rem; }
+  .pc-section-title {
+    font-size:0.78rem; font-weight:800; color:var(--navy); text-transform:uppercase;
+    letter-spacing:0.06em; padding-bottom:0.35rem;
+    border-bottom:2px solid var(--gray-100);
+  }
+  .pc-section-text { font-size:0.85rem; color:var(--gray-600); line-height:1.7; }
+
+  .pc-results { list-style:none; display:flex; flex-direction:column; gap:0.6rem; padding:0; }
+  .pc-results li {
+    display:flex; align-items:baseline; gap:0.6rem;
+    font-size:0.83rem; color:var(--gray-600); line-height:1.5;
+    padding:0.5rem 0.75rem; background:var(--gray-50); border-radius:8px;
+  }
+  .pc-num {
+    font-family:var(--font-display); font-size:1.2rem; font-weight:900;
+    flex-shrink:0; line-height:1;
+  }
+
+  @media(max-width:1024px) { .pc-grid { grid-template-columns:1fr 1fr; } }
+  @media(max-width:640px) { .pc-grid { grid-template-columns:1fr; } }
+
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <img src="data:image/jpeg;base64,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" alt="Fundación Puertas de Colores" style="height:52px;width:auto;">
+      <div class="logo-text">
+        <strong>Fundación</strong>
+        <span>Puertas de Colores</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#nosotras">Nosotras</a></li>
+      <li><a href="#ejes">Ejes Temáticos</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#transparencia">Transparencia</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#contacto" class="btn-donar">Quiero ayudar ♥</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#nosotras" onclick="closeMobile()">Nosotras</a>
+  <a href="#ejes" onclick="closeMobile()">Ejes Temáticos</a>
+  <a href="#proyectos" onclick="closeMobile()">Proyectos</a>
+  <a href="#blog" onclick="closeMobile()">Blog</a>
+  <a href="#transparencia" onclick="closeMobile()">Transparencia</a>
+  <a href="#contacto" onclick="closeMobile()">Contacto</a>
+  <a href="#contacto" style="color:var(--gold); font-weight:700;" onclick="closeMobile()">♥ Quiero ayudar</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Bogotá, Colombia — Desde 2020
+    </div>
+    <h1 class="hero-title">
+      Transformamos vidas,<br>
+      abrimos <em>puertas de oportunidad</em>
+    </h1>
+    <p class="hero-sub">
+      Trabajamos con mujeres, niñas y comunidades vulnerables para construir territorios más justos, seguros y sostenibles.
+    </p>
+    <div class="hero-btns">
+      <a href="#proyectos" class="btn-primary">Conoce nuestros proyectos</a>
+      <a href="#contacto" class="btn-outline">Quiero ayudar</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Descubrir</span>
+    <svg width="16" height="20" viewBox="0 0 16 20" fill="white"><path d="M8 0v14M2 8l6 6 6-6"/></svg>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num counter" data-target="3000">0</span>
+      <div class="stat-label">Mujeres formadas</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num counter" data-target="50">0</span>
+      <div class="stat-label">Instituciones acompañadas</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num counter" data-target="10">0</span>
+      <div class="stat-label">Alianzas estratégicas</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num counter" data-target="16">0</span>
+      <div class="stat-label">Municipios impactados</div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- PROPÓSITO RIBBON -->
+  <div class="nos-ribbon">
+    <div class="nos-ribbon-inner container">
+      <span class="nos-ribbon-icon">🚪</span>
+      <div>
+        <div style="color:var(--gold);font-size:0.7rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.3rem;">Nuestro Propósito</div>
+        <p style="color:white;font-family:var(--font-display);font-size:1.1rem;font-weight:700;line-height:1.5;">Promover Puertas de oportunidad para que mujeres y niñas crean en ellas, se empoderen y fortalezcan, para superar la pobreza, la violencia y la exclusión.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MVV FLIP CARDS -->
+  <div style="padding:5rem 2rem 6rem; background:white;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:3.5rem;" data-aos>
+        <span class="section-tag tag-purple">Nuestra identidad</span>
+        <h2 class="section-title">Misión, Visión y Valores</h2>
+        <p style="color:var(--gray-600);font-size:0.95rem;max-width:500px;margin:0.5rem auto 0;">Pasa el cursor sobre cada tarjeta para descubrir más.</p>
+      </div>
+      <div class="mvv-flip-grid">
+
+        <!-- MISIÓN FLIP -->
+        <div class="flip-card" data-aos data-delay="0">
+          <div class="flip-inner">
+            <div class="flip-front" style="background:linear-gradient(135deg,#6B21A8 0%,#4C1D95 100%);">
+              <div class="flip-front-deco"></div>
+              <div class="flip-icon-wrap">💜</div>
+              <h3 class="flip-front-title">Misión</h3>
+              <p class="flip-front-hint">Pasa el cursor para leer</p>
+              <div class="flip-front-wave"></div>
+            </div>
+            <div class="flip-back" style="background:white;">
+              <div class="flip-back-accent" style="background:var(--purple);"></div>
+              <h3 class="flip-back-title" style="color:var(--purple);">Misión</h3>
+              <p class="flip-back-text">Tenemos un llamado, tenemos un propósito: Puertas de oportunidad, de bendición y dignidad para las mujeres violentadas y vulneradas de múltiples formas, ayudándolas en el proceso de recuperación social, emocional, económico y espiritual, que les permita pasar la página, sanando el pasado y viendo las posibilidades del futuro.</p>
+              <div class="flip-back-tag" style="background:var(--purple-soft);color:var(--purple);">💜 Línea de vida</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VISIÓN FLIP -->
+        <div class="flip-card" data-aos data-delay="150">
+          <div class="flip-inner">
+            <div class="flip-front" style="background:linear-gradient(135deg,#B45309 0%,#92400E 100%);">
+              <div class="flip-front-deco"></div>
+              <div class="flip-icon-wrap">🔭</div>
+              <h3 class="flip-front-title">Visión</h3>
+              <p class="flip-front-hint">Pasa el cursor para leer</p>
+              <div class="flip-front-wave"></div>
+            </div>
+            <div class="flip-back" style="background:white;">
+              <div class="flip-back-accent" style="background:var(--gold);"></div>
+              <h3 class="flip-back-title" style="color:var(--orange);">Visión</h3>
+              <p class="flip-back-text">Nos comprometemos a que, a través de estrategias innovadoras, alianzas estratégicas y un equipo multidisciplinario, consigamos ser puente entre las comunidades en diversos territorios y las soluciones efectivas para las necesidades de las mujeres. Nos esforzamos por ser consistentes, con los programas, proyectos e iniciativas que desde la fundación se generen, garantizando transparencia, eficiencia y resultados medibles y auditables para las mujeres, los donantes, cooperantes y órganos de control.</p>
+              <div class="flip-back-tag" style="background:var(--orange-soft);color:var(--orange);">🎯 Compromiso 2030</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VALORES FLIP -->
+        <div class="flip-card" data-aos data-delay="300">
+          <div class="flip-inner">
+            <div class="flip-front" style="background:linear-gradient(135deg,#15803D 0%,#14532D 100%);">
+              <div class="flip-front-deco"></div>
+              <div class="flip-icon-wrap">🌟</div>
+              <h3 class="flip-front-title">Valores</h3>
+              <p class="flip-front-hint">Pasa el cursor para leer</p>
+              <div class="flip-front-wave"></div>
+            </div>
+            <div class="flip-back" style="background:white;">
+              <div class="flip-back-accent" style="background:var(--green);"></div>
+              <h3 class="flip-back-title" style="color:var(--green);">Valores</h3>
+              <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.875rem;">
+                <span class="flip-pill" style="background:#F3E8FF;color:#6B21A8;">Fe</span>
+                <span class="flip-pill" style="background:#FEF3C7;color:#92400E;">Amor</span>
+                <span class="flip-pill" style="background:#DCFCE7;color:#15803D;">Paciencia</span>
+                <span class="flip-pill" style="background:#FFF7ED;color:#EA580C;">Gozo</span>
+                <span class="flip-pill" style="background:#F3E8FF;color:#6B21A8;">Bondad</span>
+                <span class="flip-pill" style="background:#DCFCE7;color:#15803D;">Mansedumbre</span>
+                <span class="flip-pill" style="background:#FEF3C7;color:#92400E;">Bien Común</span>
+                <span class="flip-pill" style="background:#DCFCE7;color:#15803D;">Templanza</span>
+              </div>
+              <p class="flip-back-text" style="font-size:0.82rem;">Estos valores fundamentales guían cada acción, promoviendo una cultura organizacional basada en el respeto, la solidaridad y el compromiso con el desarrollo integral de las mujeres y sus familias.</p>
+              <div class="flip-back-tag" style="background:var(--green-soft);color:var(--green);">🌱 Nuestra esencia</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /mvv-flip-grid -->
+    </div>
+  </div>
+
+  <!-- CITA INSPIRACIONAL -->
+  <div class="nos-quote-strip">
+    <div class="container" style="text-align:center;">
+      <div class="nos-quote-marks">"</div>
+      <p class="nos-quote-text">Las oportunidades son puertas que se abren a quienes se organizan, confían y avanzan hacia la formación y la inclusión.</p>
+      <div class="nos-quote-author">— Fundación Puertas de Colores</div>
+    </div>
+  </div>
+
+</section>
+<!-- IMPACTO SOCIAL -->
+<section id="impacto">
+  <div class="container">
+    <div class="impacto-header" data-aos>
+      <span class="section-tag" style="background:rgba(245,158,11,0.15);color:var(--gold);">Nuestro impacto</span>
+      <h2 class="section-title">Transformando vidas en todo el territorio</h2>
+      <p class="section-sub">Desde 2020, hemos llegado a miles de mujeres, niñas y comunidades en Colombia.</p>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card" data-aos data-delay="0">
+        <span class="impact-icon">👩</span>
+        <span class="impact-num counter" data-target="3000">0</span>
+        <div class="impact-label">Mujeres formadas<br>en Derechos</div>
+      </div>
+      <div class="impact-card" data-aos data-delay="100">
+        <span class="impact-icon">🏫</span>
+        <span class="impact-num counter" data-target="50">0</span>
+        <div class="impact-label">Instituciones educativas<br>acompañadas</div>
+      </div>
+      <div class="impact-card" data-aos data-delay="200">
+        <span class="impact-icon">🤝</span>
+        <span class="impact-num counter" data-target="10">0</span>
+        <div class="impact-label">Alianzas estratégicas<br>de trabajo comunitario</div>
+      </div>
+      <div class="impact-card" data-aos data-delay="300">
+        <span class="impact-icon">📍</span>
+        <span class="impact-num counter" data-target="16">0</span>
+        <div class="impact-label">Municipios con<br>presencia activa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EJES TEMÁTICOS -->
+<section id="ejes">
+  <div class="container">
+    <div class="ejes-header" data-aos>
+      <span class="section-tag tag-navy">Líneas de trabajo</span>
+      <h2 class="section-title">Nuestros ejes temáticos</h2>
+      <p class="section-sub">Tres líneas de acción que guían cada uno de nuestros programas y proyectos comunitarios.</p>
+    </div>
+    <div class="ejes-tabs">
+      <button class="eje-tab purple active" onclick="showEje('purple')">🟣 Línea Púrpura</button>
+      <button class="eje-tab green" onclick="showEje('green')">🟢 Línea Verde</button>
+      <button class="eje-tab orange" onclick="showEje('orange')">🟠 Línea Naranja</button>
+    </div>
+
+    <!-- PÚRPURA -->
+    <div class="eje-panel active" id="eje-purple">
+      <div class="eje-content-card purple-bg" data-aos>
+        <span class="eje-icon-big">💜</span>
+        <h3>Derechos Menstruales</h3>
+        <p>Comprendemos que la menstruación y su gestión es un tema de derechos humanos. Acompañamos procesos de formación para mujeres y niñas que viven pobreza menstrual.</p>
+        <ul class="eje-items">
+          <li>Formación en derechos menstruales</li>
+          <li>Entrega de productos de cuidado</li>
+          <li>Elaboración de productos ecológicos</li>
+          <li>Dignidad menstrual como derecho</li>
+          <li>Eliminación de la pobreza menstrual</li>
+        </ul>
+      </div>
+      <div class="eje-side">
+        <div class="eje-mini-card border-purple">
+          <h4>🎓 Formación</h4>
+          <p>Talleres educativos sobre salud menstrual, derechos y gestión sostenible para comunidades vulnerables.</p>
+        </div>
+        <div class="eje-mini-card border-purple">
+          <h4>📦 Entrega de productos</h4>
+          <p>Kits menstruales con copas, toallas ecológicas y materiales de higiene para mujeres y niñas.</p>
+        </div>
+        <div class="eje-mini-card border-purple">
+          <h4>🌿 Productos ecológicos</h4>
+          <p>Capacitación para fabricar productos higiénicos sostenibles como alternativa de emprendimiento.</p>
+        </div>
+        <div class="eje-stat-box purple-bg">
+          <span class="big-num">+3.000</span>
+          <div class="lbl">Mujeres y niñas beneficiadas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VERDE -->
+    <div class="eje-panel" id="eje-green">
+      <div class="eje-content-card green-bg" data-aos>
+        <span class="eje-icon-big">💚</span>
+        <h3>Fortalecimiento de Organizaciones de Mujeres</h3>
+        <p>Fortalecemos capacidades de organizaciones comunitarias, fundaciones y organizaciones de base lideradas por mujeres, como actores clave para la sostenibilidad territorial.</p>
+        <ul class="eje-items">
+          <li>Formulación de proyectos sociales</li>
+          <li>Innovación social y sostenibilidad</li>
+          <li>Fuentes de financiación</li>
+          <li>Articulación en redes</li>
+          <li>Canalización de recursos y donaciones</li>
+        </ul>
+      </div>
+      <div class="eje-side">
+        <div class="eje-mini-card border-green">
+          <h4>📋 Formulación de proyectos</h4>
+          <p>Acompañamiento técnico en el diseño y presentación de proyectos ante entidades financiadoras.</p>
+        </div>
+        <div class="eje-mini-card border-green">
+          <h4>🔗 Redes y articulación</h4>
+          <p>Construcción de alianzas estratégicas con instituciones públicas, privadas y organismos internacionales.</p>
+        </div>
+        <div class="eje-mini-card border-green">
+          <h4>💡 Innovación social</h4>
+          <p>Metodologías creativas para resolver problemas comunitarios con enfoque de género y sostenibilidad.</p>
+        </div>
+        <div class="eje-stat-box green-bg">
+          <span class="big-num">+10</span>
+          <div class="lbl">Alianzas estratégicas activas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NARANJA -->
+    <div class="eje-panel" id="eje-orange">
+      <div class="eje-content-card orange-bg" data-aos>
+        <span class="eje-icon-big">🧡</span>
+        <h3>Prevención de Violencias</h3>
+        <p>Desarrollamos metodologías para la formación y prevención de la ESCNNA (explotación sexual y comercial de niños, niñas y adolescentes) y otras formas de violencia.</p>
+        <ul class="eje-items">
+          <li>Prevención de ESCNNA</li>
+          <li>Abordaje de trata de personas</li>
+          <li>Formación comunitaria en prevención</li>
+          <li>Protección de niñas y adolescentes</li>
+          <li>Atención psicosocial y espiritual</li>
+        </ul>
+      </div>
+      <div class="eje-side">
+        <div class="eje-mini-card border-orange">
+          <h4>🛡️ ESCNNA</h4>
+          <p>Metodologías innovadoras para la prevención de la explotación sexual comercial de niños y adolescentes.</p>
+        </div>
+        <div class="eje-mini-card border-orange">
+          <h4>⚠️ Trata de personas</h4>
+          <p>Abordaje integral de la trata de personas y diversas formas de explotación, incluyendo entornos digitales.</p>
+        </div>
+        <div class="eje-mini-card border-orange">
+          <h4>💛 Atención psicosocial</h4>
+          <p>Acompañamiento emocional, social y espiritual para víctimas de violencias en territorios vulnerables.</p>
+        </div>
+        <div class="eje-stat-box orange-bg">
+          <span class="big-num">16</span>
+          <div class="lbl">Municipios con programas activos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos" style="background:var(--gray-50);">
+  <div class="container">
+
+    <div style="text-align:center; margin-bottom:3.5rem;" data-aos>
+      <span class="section-tag tag-purple">Nuestros proyectos</span>
+      <h2 class="section-title">Acciones concretas, impacto real</h2>
+      <p class="section-sub" style="margin:0 auto;">Cada proyecto es una puerta de oportunidad que abrimos juntas en los territorios.</p>
+    </div>
+
+    <!-- FILTROS -->
+    <div class="pf-bar" id="proyFilters">
+      <button class="pf-btn pf-active" onclick="filterProy('all',this)">✦ Todos</button>
+      <button class="pf-btn" onclick="filterProy('purple',this)">
+        <span class="pf-dot" style="background:var(--purple);"></span>Línea Púrpura
+      </button>
+      <button class="pf-btn" onclick="filterProy('green',this)">
+        <span class="pf-dot" style="background:var(--green);"></span>Línea Verde
+      </button>
+      <button class="pf-btn" onclick="filterProy('orange',this)">
+        <span class="pf-dot" style="background:var(--orange);"></span>Línea Naranja
+      </button>
+    </div>
+
+    <!-- GRID DE PROYECTOS -->
+    <div class="pc-grid" id="proyGrid">
+
+      <!-- ══ PROYECTO 1 ══ -->
+      <div class="pc" data-cat="purple" data-aos>
+        <div class="pc-top" style="background:linear-gradient(135deg,#6B21A8,#4C1D95);">
+          <div class="pc-top-deco"></div>
+          <div class="pc-badges">
+            <span class="pc-badge-estado done">✅ Finalizado</span>
+            <span class="pc-badge-linea">💜 Línea Púrpura</span>
+          </div>
+          <h3 class="pc-title">Campaña de Salud Menstrual</h3>
+          <p class="pc-subtitle">En el marco de la Conmemoración de la Salud Menstrual</p>
+        </div>
+        <div class="pc-body">
+          <div class="pc-meta-grid">
+            <div class="pc-meta-item">
+              <span class="pc-meta-label">📅 Período</span>
+              <span class="pc-meta-val">Mayo — Junio 2024</span>
+            </div>
+            <div class="pc-meta-item">
+              <span class="pc-meta-label">🏛️ Donante</span>
+              <span class="pc-meta-val">Embajada de Francia en Colombia</span>
+            </div>
+          </div>
+          <div class="pc-section">
+            <div class="pc-section-title">🎯 Objetivo</div>
+            <p class="pc-section-text">Ubicar en el panorama público la pobreza menstrual como una situación minimizada y reducida, visibilizando sus efectos psicosociales, económicos y ambientales sobre los grupos de mujeres y el planeta.</p>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:1.25rem;">
+            <div style="flex:1; min-width:180px;">
+              <img src="imagen2.jpeg" alt="Salud Menstrual - imagen izquierda" style="width:100%; border-radius:18px; object-fit:cover; aspect-ratio:4/3; box-shadow:0 14px 40px rgba(0,0,0,0.12);">
+            </div>
+            <div style="flex:1; min-width:180px;">
+              <a href="proyecto_salud_mestrual.html" style="display:block; text-decoration:none; color:inherit;">
+                <img src="imagen1.jpeg" alt="Ver proyecto Salud Menstrual" style="width:100%; border-radius:18px; object-fit:cover; aspect-ratio:4/3; box-shadow:0 14px 40px rgba(0,0,0,0.12);">
+                <div style="margin-top:0.9rem; padding:0.9rem 1rem; border-radius:18px; background:white; color:var(--navy); font-weight:700; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.1);">Ver proyecto Salud Menstrual</div>
+              </a>
+            </div>
+          </div>
+          <div class="pc-section">
+            <div class="pc-section-title">📊 Resultados</div>
+            <ul class="pc-results">
+              <li><span class="pc-num" style="color:var(--purple);">300</span> niñas y mujeres recibieron toallas higiénicas ecológicas — Portal Transmilenio Paraíso</li>
+              <li><span class="pc-num" style="color:var(--purple);">1.300</span> mujeres conocieron directamente la pobreza menstrual en el portal transitable, Manzanas del Cuidado de Mártires y el Centro</li>
+              <li><span class="pc-num" style="color:var(--purple);">10.800</span> personas conocieron la actividad a través de la difusión en redes de Idiprom y las Manzanas del Cuidado</li>
+              <li><span class="pc-num" style="color:var(--purple);">95</span> mujeres participantes recibieron productos en las Manzanas del Cuidado de Mártires y el Centro</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ PROYECTO 2 ══ -->
+      <div class="pc" data-cat="purple" data-aos data-delay="100">
+        <div class="pc-top" style="background:linear-gradient(135deg,#7C3AED,#6B21A8);">
+          <div class="pc-top-deco"></div>
+          <div class="pc-badges">
+            <span class="pc-badge-estado done">✅ Finalizado</span>
+            <span class="pc-badge-linea">💜 Línea Púrpura</span>
+          </div>
+          <h3 class="pc-title">Estrategia "Dignidad Menstrual"</h3>
+          <p class="pc-subtitle">Mujeres del Departamento de Cundinamarca</p>
+        </div>
+        <div class="pc-body">
+          <div class="pc-meta-grid">
+            <div class="pc-meta-item">
+              <span class="pc-meta-label">📅 Período</span>
+              <span class="pc-meta-val">15 Ago — 14 Nov 2025</span>
+            </div>
+            <div class="pc-meta-item">
+              <span class="pc-meta-label">🏛️ Donante</span>
+              <span class="pc-meta-val">Gobernación de Cundinamarca · Sec. Mujer y Género</span>
+            </div>
+            <div class="pc-meta-item" style="grid-column:1/-1;">
+              <span class="pc-meta-label">📋 Referencia</span>
+              <span class="pc-meta-val">Conv. SMUEG-CD-CA-167-2025</span>
+            </div>
+          </div>
+          <div class="pc-section">
+            <div class="pc-section-title">🎯 Objetivo</div>
+            <p class="pc-section-text">Aportar a la disminución de la pobreza menstrual a partir de la formación en Derechos y la entrega de productos higiénicos para mujeres y niñas en 16 municipios con pobreza multidimensional.</p>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:1.25rem;">
+            <div style="flex:1; min-width:180px;">
+              <img src="imagen3.jpeg" alt="Dignidad Menstrual - imagen 3" style="width:100%; border-radius:18px; object-fit:cover; aspect-ratio:4/3; box-shadow:0 14px 40px rgba(0,0,0,0.12);">
+            </div>
+            <div style="flex:1; min-width:180px;">
+              <a href="proyecto_dignidad_menstrual.html" style="display:block; text-decoration:none; color:inherit;">
+                <img src="imagen4.jpeg" alt="Ver proyecto Dignidad Menstrual" style="width:100%; border-radius:18px; object-fit:cover; aspect-ratio:4/3; box-shadow:0 14px 40px rgba(0,0,0,0.12);">
+                <div style="margin-top:0.9rem; padding:0.9rem 1rem; border-radius:18px; background:white; color:var(--navy); font-weight:700; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.1);">Ver proyecto Dignidad Menstrual</div>
+              </a>
+            </div>
+          </div>
+          <div class="pc-section">
+            <div class="pc-section-title">📊 Resultados</div>
+            <ul class="pc-results">
+              <li><span class="pc-num" style="color:var(--purple);">16</span> municipios con pobreza multidimensional de Cundinamarca incluidos en la iniciativa</li>
+              <li><span class="pc-num" style="color:var(--purple);">542</span> mujeres formadas en cuidado y uso de la copa menstrual</li>
+              <li><span class="pc-num" style="color:var(--purple);">550</span> niñas formadas en Derechos menstruales con kit de hasta 2 años de duración</li>
+              <li><span class="pc-num" style="color:var(--purple);">330</span> mujeres capacitadas en fabricación de productos higiénicos sostenibles e iniciativas de emprendimiento</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ PROYECTO 3 ══ -->
+      <div class="pc" data-cat="purple" data-aos data-delay="200">
+        <div class="pc-top" style="background:linear-gradient(135deg,#1E3A5F,#0F1F3D);">
+          <div class="pc-top-deco"></div>
+          <div class="pc-badges">
+            <span class="pc-badge-estado active">🔵 En ejecución</span>
+            <span class="pc-badge-linea">💜 Línea Púrpura</span>
+          </div>
+          <h3 class="pc-title">Implementación del Acuerdo de Paz, Seguridad Humana y DD.HH.</h3>
+          <p class="pc-subtitle">Carepa, Antioquia — Fortalecimiento Ministerio del Interior</p>
+        </div>
+        <div class="pc-body">
+          <div class="pc-meta-grid">
+            <div class="pc-meta-item">
+              <span class="pc-meta-label">📅 Período</span>
+              <span class="pc-meta-val">15 Ene — 15 Abr 2026</span>
+            </div>
+            <div class="pc-meta-item">
+              <span class="pc-meta-label">🏛️ Donante</span>
+              <span class="pc-meta-val">Ministerio del Interior · Supervisión PNUD</span>
+            </div>
+            <div class="pc-meta-item" style="grid-column:1/-1;">
+              <span class="pc-meta-label">📋 Referencia</span>
+              <span class="pc-meta-val">Acuerdo Subvención PAZ-569-01000992</span>
+            </div>
+          </div>
+          <div class="pc-section">
+            <div class="pc-section-title">📍 Territorio</div>
+            <p class="pc-section-text">Corregimientos de Zungo Embarcadero, El Silencio y Piedras Blancas de Carepa, Antioquia.</p>
+          </div>
+          <div class="pc-section">
+            <div class="pc-section-title">🎯 Objetivo</div>
+            <p class="pc-section-text">Fortalecer las capacidades comunitarias mediante formación en cuidado menstrual, prevención de violencias basadas en género y producción local de productos para la gestión menstrual con mujeres rurales.</p>
+          </div>
+          <div class="pc-section">
+            <div class="pc-section-title">📊 Resultados</div>
+            <ul class="pc-results">
+              <li><span class="pc-num" style="color:var(--navy);">46</span> personas socializadas (Alcalde, Concejales, Secretarios)</li>
+              <li><span class="pc-num" style="color:var(--navy);">13</span> talleres con 496 niñas/niños/adolescentes en 3 colegios</li>
+              <li><span class="pc-num" style="color:var(--navy);">67</span> mujeres formadas en derechos menstruales</li>
+              <li><span class="pc-num" style="color:var(--navy);">4</span> talleres con 91 mujeres rurales para elaboración de toallas ecológicas</li>
+              <li><span class="pc-num" style="color:var(--navy);">2</span> encuentros con 82 docentes y funcionarios de la Defensoría del Pueblo para réplica de talleres</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /pc-grid -->
+  </div>
+</section>
+<!-- BLOG -->
+<section id="blog">
+  <div class="container">
+    <div class="blog-header" data-aos>
+      <span class="section-tag tag-navy">Actualidad</span>
+      <h2 class="section-title">Noticias, informes e investigaciones</h2>
+      <p class="section-sub" style="margin:0 auto;">Mantente informada sobre nuestras actividades, logros y aprendizajes.</p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card" data-aos>
+        <div class="blog-img blog-img-1">
+          <div class="blog-cat" style="background:var(--purple);color:white;">Informe</div>
+          📊
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">Mayo 2025</div>
+          <h3>Resultados del proyecto Dignidad Menstrual en Cundinamarca</h3>
+          <p>Más de 1.400 mujeres y niñas beneficiadas en 16 municipios con pobreza menstrual en el departamento.</p>
+          <a href="#" class="read-more purple">Leer más →</a>
+        </div>
+      </div>
+      <div class="blog-card" data-aos data-delay="100">
+        <div class="blog-img blog-img-2">
+          <div class="blog-cat" style="background:var(--green);color:white;">Evento</div>
+          🌱
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">Abril 2025</div>
+          <h3>Taller de fortalecimiento para organizaciones lideradas por mujeres</h3>
+          <p>Formación en formulación de proyectos e innovación social para lideresas comunitarias de Bogotá.</p>
+          <a href="#" class="read-more green">Leer más →</a>
+        </div>
+      </div>
+      <div class="blog-card" data-aos data-delay="200">
+        <div class="blog-img blog-img-3">
+          <div class="blog-cat" style="background:var(--orange);color:white;">Investigación</div>
+          🔍
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">Marzo 2025</div>
+          <h3>Metodologías de prevención de violencias con niñas y adolescentes</h3>
+          <p>Estudio sobre el impacto de nuestras metodologías lúdicas en la prevención de ESCNNA.</p>
+          <a href="#" class="read-more orange">Leer más →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="container">
+    <div class="testimonios-header" data-aos>
+      <span class="section-tag tag-purple">Voces que inspiran</span>
+      <h2 class="section-title">Historias de transformación</h2>
+      <p class="section-sub" style="margin:0 auto;">Las palabras de quienes han vivido el cambio son nuestra mayor motivación.</p>
+    </div>
+    <div class="slider-wrap">
+      <div class="slider-track" id="sliderTrack">
+        <div class="testimonial-card">
+          <span class="quote-mark">"</span>
+          <p>Gracias a la Fundación Puertas de Colores aprendí sobre mis derechos y pude acceder a productos que nunca había tenido. Hoy soy formadora en mi comunidad.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar purple">👩🏽</div>
+            <div>
+              <div class="author-name">María Alejandra R.</div>
+              <div class="author-role">Beneficiaria — Cundinamarca</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <span class="quote-mark">"</span>
+          <p>El acompañamiento de la fundación nos permitió formular nuestro primer proyecto y obtener financiación. Nuestra organización ha crecido enormemente.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar green">👩🏾</div>
+            <div>
+              <div class="author-name">Claudia Patricia M.</div>
+              <div class="author-role">Lideresa comunitaria — Bogotá</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <span class="quote-mark">"</span>
+          <p>Los talleres de prevención con jóvenes son transformadores. Las metodologías lúdicas generan conversaciones reales sobre protección y derechos.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar orange">👩🏻</div>
+            <div>
+              <div class="author-name">Diana Carolina P.</div>
+              <div class="author-role">Docente aliada — Meta</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slider-controls">
+      <button class="slider-dot active" onclick="goSlide(0)"></button>
+      <button class="slider-dot" onclick="goSlide(1)"></button>
+      <button class="slider-dot" onclick="goSlide(2)"></button>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPARENCIA -->
+<section id="transparencia">
+  <div class="container">
+    <div class="transparencia-header" data-aos>
+      <span class="section-tag tag-navy">Rendición de cuentas</span>
+      <h2 class="section-title">Transparencia e información pública</h2>
+      <p class="section-sub" style="margin:0 auto;">Creemos en la rendición de cuentas como base de la confianza comunitaria.</p>
+    </div>
+    <div class="docs-grid">
+      <div class="doc-card" data-aos>
+        <div class="doc-icon red">📄</div>
+        <div class="doc-info">
+          <h4>Informe de gestión 2024</h4>
+          <p>Resultados y actividades del año fiscal 2024</p>
+        </div>
+        <div class="doc-download">⬇</div>
+      </div>
+      <div class="doc-card" data-aos data-delay="100">
+        <div class="doc-icon blue">📊</div>
+        <div class="doc-info">
+          <h4>Estados financieros 2024</h4>
+          <p>Balance general y estados de resultados</p>
+        </div>
+        <div class="doc-download">⬇</div>
+      </div>
+      <div class="doc-card" data-aos data-delay="200">
+        <div class="doc-icon green">📋</div>
+        <div class="doc-info">
+          <h4>Estatutos institucionales</h4>
+          <p>Documentos de constitución y gobierno</p>
+        </div>
+        <div class="doc-download">⬇</div>
+      </div>
+      <div class="doc-card" data-aos>
+        <div class="doc-icon red">📁</div>
+        <div class="doc-info">
+          <h4>Convenio Dignidad Menstrual</h4>
+          <p>Convenio SMUEG-CD-CA-167-2025</p>
+        </div>
+        <div class="doc-download">⬇</div>
+      </div>
+      <div class="doc-card" data-aos data-delay="100">
+        <div class="doc-icon blue">📜</div>
+        <div class="doc-info">
+          <h4>Política de protección</h4>
+          <p>Protección de niñas, niños y adolescentes</p>
+        </div>
+        <div class="doc-download">⬇</div>
+      </div>
+      <div class="doc-card" data-aos data-delay="200">
+        <div class="doc-icon green">🔍</div>
+        <div class="doc-info">
+          <h4>Informe de proyectos 2023</h4>
+          <p>Sistematización de experiencias</p>
+        </div>
+        <div class="doc-download">⬇</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="container">
+    <div class="contacto-grid">
+      <div class="contacto-info" data-aos="fade-right">
+        <span class="section-tag tag-purple">Contáctanos</span>
+        <h2>Juntas transformamos territorios</h2>
+        <p>¿Quieres colaborar, donar, ser aliada estratégica o simplemente conocer más sobre nuestro trabajo? Escríbenos, estamos aquí para ti.</p>
+        <div class="contact-methods">
+          <div class="contact-method">
+            <div class="contact-method-icon green">📱</div>
+            <div>
+              <strong>WhatsApp / Teléfono</strong>
+              <span>+57 310-7986-247 · Directora Mabel Martínez</span>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="contact-method-icon purple">📘</div>
+            <div>
+              <strong>Facebook</strong>
+              <span>Fundacion puertas de colores</span>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="contact-method-icon orange">📸</div>
+            <div>
+              <strong>Instagram</strong>
+              <span>@Fundacionpuertasdecolores</span>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="contact-method-icon navy">📍</div>
+            <div>
+              <strong>Sede</strong>
+              <span>Bogotá, Colombia</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-aos="fade-left">
+        <div style="background:var(--gray-50); border-radius:24px; padding:2.5rem;">
+          <h3 style="font-family:var(--font-display); font-size:1.4rem; color:var(--navy); margin-bottom:1.5rem;">Envíanos un mensaje</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" placeholder="Tu nombre">
+            </div>
+            <div class="form-group">
+              <label>Apellido</label>
+              <input type="text" placeholder="Tu apellido">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Correo electrónico</label>
+            <input type="email" placeholder="tu@correo.com">
+          </div>
+          <div class="form-group">
+            <label>¿Cómo quieres colaborar?</label>
+            <select>
+              <option>Selecciona una opción</option>
+              <option>Donación económica</option>
+              <option>Voluntariado</option>
+              <option>Alianza estratégica</option>
+              <option>Información general</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Mensaje</label>
+            <textarea placeholder="Cuéntanos cómo quieres ser parte del cambio..."></textarea>
+          </div>
+          <button class="btn-submit">Enviar mensaje ♥</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:0.5rem;">
+          <img src="data:image/jpeg;base64,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" alt="Logo" style="height:48px;width:auto;border-radius:6px;background:white;padding:2px;">
+          <div style="color:white;">
+            <strong style="font-family:var(--font-display); font-size:1rem; display:block;">Fundación Puertas de Colores</strong>
+            <span style="font-size:0.7rem; opacity:0.6; text-transform:uppercase; letter-spacing:0.08em;">Bogotá, Colombia</span>
+          </div>
+        </div>
+        <p>Trabajamos con y para mujeres, entendiendo la fuerza que poseemos para la transformación de familias, comunidades y territorios.</p>
+        <div class="socials">
+          <a href="#" class="social-btn" title="Facebook">📘</a>
+          <a href="#" class="social-btn" title="Instagram">📸</a>
+          <a href="https://wa.me/573107986247" class="social-btn" title="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Organización</h4>
+        <ul>
+          <li><a href="#nosotras">Nosotras</a></li>
+          <li><a href="#ejes">Ejes temáticos</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#blog">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Recursos</h4>
+        <ul>
+          <li><a href="#transparencia">Transparencia</a></li>
+          <li><a href="#transparencia">Informes financieros</a></li>
+          <li><a href="#transparencia">Documentos</a></li>
+          <li><a href="#contacto">Alianzas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contáctanos</h4>
+        <ul>
+          <li><a href="tel:+573107986247">+57 310-7986-247</a></li>
+          <li><a href="#">Directora: Mabel Martínez</a></li>
+          <li><a href="#">Bogotá, Colombia</a></li>
+          <li><a href="#contacto">Formulario de contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Fundación Puertas de Colores · Organización sin ánimo de lucro · Bogotá, Colombia</p>
+      <p style="opacity:0.4; font-size:0.75rem;">Hecho con ♥ para transformar territorios</p>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/573107986247" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+// ── NAVBAR scroll ──
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── HAMBURGER ──
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+// ── AOS (Intersection Observer) ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const delay = e.target.dataset.delay || 0;
+      setTimeout(() => e.target.classList.add('aos-visible'), parseInt(delay));
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
+
+// ── COUNTERS ──
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.done) {
+      e.target.dataset.done = true;
+      const target = parseInt(e.target.dataset.target);
+      const duration = 2000;
+      const step = target / (duration / 16);
+      let current = 0;
+      const interval = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(interval); }
+        e.target.textContent = Math.floor(current).toLocaleString('es-CO') + (target >= 100 ? '+' : '');
+      }, 16);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+// ── EJES TABS ──
+function showEje(color) {
+  document.querySelectorAll('.eje-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.eje-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('eje-' + color).classList.add('active');
+  document.querySelectorAll('.eje-tab.' + color).forEach(t => t.classList.add('active'));
+}
+
+// ── SLIDER ──
+let slideIndex = 0;
+function goSlide(i) {
+  const track = document.getElementById('sliderTrack');
+  const cards = track.children;
+  const w = cards[0].offsetWidth + 32;
+  slideIndex = i;
+  track.style.transform = `translateX(-${i * w}px)`;
+  document.querySelectorAll('.slider-dot').forEach((d, j) => d.classList.toggle('active', j === i));
+}
+// Auto-slide
+setInterval(() => goSlide((slideIndex + 1) % 3), 5000);
+
+// ── FILTER BTNS ──
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.className = 'filter-btn');
+    this.className = 'filter-btn active-all';
+  });
+});
+
+// ── NAVBAR scrolled on load ──
+if(window.scrollY > 60) document.getElementById('navbar').classList.add('scrolled');
+
+function filterProy(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('pf-active'));
+  btn.classList.add('pf-active');
+  document.querySelectorAll('.proy-card').forEach(c => {
+    c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'flex' : 'none';
+  });
+}
+function toggleResults(btn) {
+  const res = btn.nextElementSibling;
+  const open = res.style.display === 'block';
+  res.style.display = open ? 'none' : 'block';
+  btn.textContent = open ? 'Ver resultados ▾' : 'Ocultar resultados ▴';
+  btn.classList.toggle('open', !open);
+}
+
+// Flip card mobile tap
+document.querySelectorAll('.flip-card').forEach(card => {
+  card.addEventListener('click', () => {
+    if (window.innerWidth <= 900) card.classList.toggle('flipped');
+  });
+});
+
+</script>
+</body>
+</html>
