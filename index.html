@@ -35,6 +35,8 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  img, svg { max-width: 100%; height: auto; display: block; }
+
   html { scroll-behavior: smooth; }
 
   body {
@@ -718,6 +720,71 @@
     .form-row { grid-template-columns: 1fr; }
     .impact-grid { grid-template-columns: 1fr 1fr; }
     section { padding: 4rem 1.25rem; }
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 1rem; }
+    .nav-inner { height: 64px; }
+    .logo-text strong { font-size: 0.9rem; }
+    .logo-text span { font-size: 0.62rem; }
+    .mobile-menu { padding: 96px 1.25rem 1.5rem; }
+    .hero-content { padding: 0 1rem; }
+    .hero-badge { font-size: 0.68rem; padding: 0.45rem 0.95rem; }
+    .hero-title { font-size: clamp(1.8rem, 8vw, 2.7rem); line-height: 1.12; }
+    .hero-sub { font-size: 0.95rem; margin-bottom: 1.75rem; }
+    .hero-btns { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+    .hero-btns a { width: 100%; text-align: center; }
+    .hero-stats { flex-direction: column; }
+    .hero-stats .stat-item { padding: 1rem 1.25rem; }
+    .scroll-indicator { bottom: 24px; font-size: 0.65rem; }
+    .section-title { font-size: clamp(1.5rem, 6vw, 2.1rem); }
+    .section-sub { font-size: 0.95rem; }
+    .nosotras-grid { gap: 2.5rem; }
+    .nosotras-badge-float { right: 8px; bottom: -12px; padding: 1rem 1.15rem; }
+    .propósito-card { padding: 1.5rem; }
+    .ejes-tabs { gap: 0.6rem; }
+    .eje-tab { width: 100%; text-align: center; }
+    .eje-content-card { padding: 1.75rem 1.25rem; }
+    .eje-mini-card { padding: 1.1rem; }
+    .eje-stat-box { padding: 1.2rem; }
+    .project-highlight { padding: 2rem 1.25rem; border-radius: 20px; gap: 1.5rem; }
+    .project-meta { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .result-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .proyectos-filters { gap: 0.6rem; }
+    .filter-btn { width: calc(50% - 0.3rem); justify-content: center; }
+    .blog-grid, .impact-grid, .contacto-grid, .nos-hero-content { gap: 1.5rem; }
+    .impact-grid { grid-template-columns: 1fr; }
+    .testimonial-card { min-width: 100%; padding: 1.5rem; }
+    .slider-track { gap: 1rem; }
+    .docs-grid { gap: 1rem; }
+    .contact-method { padding: 0.9rem; gap: 0.75rem; }
+    .form-group input, .form-group textarea, .form-group select { padding: 0.8rem 0.95rem; }
+    .footer { padding: 3rem 1.25rem 1.5rem; }
+    .footer-grid { gap: 1.5rem; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+    .whatsapp-float { width: 52px; height: 52px; bottom: 20px; right: 20px; }
+    .nos-ribbon { padding: 1.25rem 1rem; }
+    .nos-ribbon-inner { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .mvv-flip-grid { gap: 1rem; }
+    .flip-card { height: auto; }
+    .flip-front, .flip-back { padding: 1.5rem 1.25rem; }
+    .flip-back-text { max-height: none; overflow: visible; }
+    .nos-quote-strip { padding: 3rem 1rem; }
+    .nos-quote-text { font-size: 1.05rem; }
+  }
+
+  @media (max-width: 480px) {
+    section { padding: 3.5rem 1rem; }
+    .hero-badge { font-size: 0.62rem; letter-spacing: 0.08em; }
+    .hero-title { font-size: clamp(1.6rem, 9vw, 2.25rem); }
+    .hero-sub { font-size: 0.9rem; }
+    .section-title { font-size: 1.45rem; }
+    .section-sub { font-size: 0.9rem; }
+    .filter-btn { width: 100%; }
+    .pc-grid, .proy-grid { gap: 1rem; }
+    .pc-top, .pc-body, .proy-body, .blog-body { padding: 1rem; }
+    .contact-method { flex-direction: column; align-items: flex-start; }
+    .contact-method-icon { width: 40px; height: 40px; }
   }
 
   /* ─── NOSOTRAS HERO ─── */
