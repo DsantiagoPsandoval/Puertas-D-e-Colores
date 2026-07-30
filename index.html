@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fundación Puertas de Colores | Transformamos vidas</title>
 <meta name="description" content="Fundación Puertas de Colores - Trabajamos con mujeres, niñas y comunidades vulnerables para construir territorios más justos, seguros y sostenibles.">
+<meta name="keywords" content="fundación, puertas de colores, mujeres, derechos, comunidad, Bogotá, Colombia, empoderamiento">
+<meta property="og:title" content="Fundación Puertas de Colores | Transformamos vidas">
+<meta property="og:description" content="Impulsamos oportunidades reales para mujeres, niñas y comunidades vulnerables a través de programas, formación y acompañamiento.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="portada.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230F3F91'/%3E%3Cpath d='M20 18h24v8H20zM20 30h24v8H20zM20 42h24v8H20z' fill='%23E4C22A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -12,6 +19,7 @@
     --purple: #753C94;
     --purple-light: #9F63C2;
     --purple-soft: #E8D8F3;
+    --purple-deep: #4C1D95;
     --turquoise: #22D3EE;
     --turquoise-dark: #0EA5E9;
     --orange: #F68B00;
@@ -37,13 +45,73 @@
 
   img, svg { max-width: 100%; height: auto; display: block; }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+  }
 
   body {
     font-family: var(--font-body);
     color: var(--gray-800);
     background: var(--white);
     overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  a, button, input, select, textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+  a, button, input, select, textarea {
+    font: inherit;
+  }
+  button, a, input, select, textarea {
+    min-height: 44px;
+  }
+  .skip-link {
+    position: absolute; left: -999px; top: 0; z-index: 9999;
+    background: var(--navy); color: white; padding: 0.85rem 1rem; border-radius: 0 0 0.75rem 0;
+  }
+  .skip-link:focus { left: 0; }
+  :focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  p, h1, h2, h3, h4, h5, h6, li, span, a, button, input, textarea, select {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .container,
+  .nav-inner,
+  .hero-content,
+  .hero-stats,
+  .footer-inner,
+  .nos-ribbon-inner,
+  .nos-hero-content,
+  .mvv-flip-grid,
+  .pc-grid,
+  .proy-grid,
+  .blog-grid,
+  .impact-grid,
+  .docs-grid,
+  .contacto-grid,
+  .footer-grid,
+  .eje-panel,
+  .eje-side,
+  .eje-content-card,
+  .flip-card,
+  .flip-front,
+  .flip-back,
+  .proy-card,
+  .blog-card,
+  .impact-card,
+  .doc-card,
+  .contact-method {
+    min-width: 0;
   }
 
   /* ─── NAVBAR ─── */
@@ -92,6 +160,10 @@
     font-weight: 700 !important; transition: transform 0.2s, box-shadow 0.2s !important;
   }
   .btn-donar:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(245,158,11,0.4); }
+  .nav-links a, .mobile-menu a, .btn-donar {
+    position: relative;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
   .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
   .hamburger span {
     display: block; width: 24px; height: 2px;
@@ -143,8 +215,13 @@
   @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-30px)} }
 
   .hero-content {
-    position: relative; z-index: 2; text-align: center;
-    max-width: 900px; padding: 0 2rem;
+    position: relative; z-index: 2;
+    max-width: 1280px; width: 100%; padding: 0 2rem 8rem;
+    display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 2.5rem;
+    align-items: center;
+  }
+  .hero-copy {
+    text-align: left;
   }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
@@ -172,27 +249,88 @@
   }
   .hero-sub {
     font-size: clamp(1rem, 2vw, 1.2rem); color: rgba(255,255,255,0.8);
-    max-width: 640px; margin: 0 auto 2.5rem; line-height: 1.7;
+    max-width: 640px; margin: 0 0 2.5rem; line-height: 1.7;
     animation: fadeUp 0.8s 0.4s ease both;
   }
   .hero-btns {
-    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    display: flex; gap: 1rem; justify-content: flex-start; flex-wrap: wrap;
     animation: fadeUp 0.8s 0.6s ease both;
   }
+  .hero-highlights {
+    display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.25rem;
+    animation: fadeUp 0.8s 0.7s ease both;
+  }
+  .hero-highlights span {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    padding: 0.45rem 0.85rem; border-radius: 999px;
+    background: rgba(255,255,255,0.14); color: white; border: 1px solid rgba(255,255,255,0.18);
+    font-size: 0.82rem; font-weight: 600;
+    backdrop-filter: blur(8px);
+  }
+  .hero-visual {
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 28px; padding: 1.2rem; backdrop-filter: blur(10px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+  .hero-visual-header {
+    display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem;
+  }
+  .hero-visual-header .section-tag {
+    margin-bottom: 0; padding: 0.35rem 0.75rem; align-self: flex-start;
+    background: rgba(248, 166, 35, 0.16); color: var(--orange-light);
+  }
+  .hero-visual-header p {
+    color: rgba(255,255,255,0.86); font-size: 0.92rem; line-height: 1.5;
+  }
+  .hero-gallery {
+    overflow-x: auto;
+    padding-bottom: 0.4rem;
+    scroll-snap-type: x mandatory;
+    touch-action: pan-x;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.4) transparent;
+  }
+  .hero-gallery::-webkit-scrollbar { height: 8px; }
+  .hero-gallery::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.35); border-radius: 999px; }
+  .hero-gallery-track {
+    display: flex; gap: 1rem; width: max-content;
+  }
+  .hero-gallery-card {
+    width: min(320px, calc(100vw - 3rem));
+    background: var(--white);
+    border-radius: 22px; overflow: hidden;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.16);
+    scroll-snap-align: start; flex-shrink: 0;
+  }
+  .hero-gallery-card img {
+    width: 100%; height: 280px; object-fit: cover;
+  }
+  .hero-gallery-card-body {
+    padding: 1rem 1rem 1.1rem;
+  }
+  .hero-gallery-card-body h3 {
+    font-family: var(--font-display); font-size: 1.05rem; font-weight: 800; color: var(--navy);
+    margin-bottom: 0.35rem;
+  }
+  .hero-gallery-card-body p {
+    font-size: 0.9rem; line-height: 1.55; color: var(--gray-600);
+  }
   .btn-primary {
-    background: var(--gold); color: var(--navy);
+    background: linear-gradient(135deg, var(--gold), #f9c74f); color: var(--navy);
     padding: 0.875rem 2rem; border-radius: 50px; font-weight: 700;
     text-decoration: none; font-size: 0.95rem;
     transition: transform 0.2s, box-shadow 0.2s;
-    display: inline-block;
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 24px rgba(228,194,42,0.24);
   }
   .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(245,158,11,0.4); }
   .btn-outline {
     border: 2px solid rgba(255,255,255,0.6); color: white;
     padding: 0.875rem 2rem; border-radius: 50px; font-weight: 600;
     text-decoration: none; font-size: 0.95rem;
-    transition: background 0.2s, border-color 0.2s;
-    display: inline-block; backdrop-filter: blur(8px);
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    display: inline-flex; align-items: center; justify-content: center; backdrop-filter: blur(8px);
   }
   .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: white; }
 
@@ -245,6 +383,9 @@
   }
   .section-sub {
     font-size: 1.05rem; color: var(--gray-600); line-height: 1.7; max-width: 580px;
+  }
+  section {
+    width: 100%; max-width: 100%;
   }
 
   /* ─── SOBRE NOSOTRAS ─── */
@@ -618,7 +759,9 @@
   .contact-methods { display: flex; flex-direction: column; gap: 1rem; }
   .contact-method {
     display: flex; align-items: center; gap: 1rem;
-    padding: 1rem; border-radius: 12px; background: var(--gray-50);
+    padding: 1rem; border-radius: 16px; background: var(--gray-50);
+    border: 1px solid rgba(117,60,148,0.08);
+    box-shadow: 0 10px 25px rgba(15,31,61,0.04);
   }
   .contact-method-icon {
     width: 44px; height: 44px; border-radius: 10px;
@@ -634,17 +777,18 @@
   .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 0.4rem; }
   .form-group input, .form-group textarea, .form-group select {
     width: 100%; padding: 0.875rem 1rem; border: 2px solid var(--gray-100);
-    border-radius: 12px; font-family: var(--font-body); font-size: 0.9rem;
+    border-radius: 14px; font-family: var(--font-body); font-size: 1rem;
     color: var(--gray-800); background: var(--gray-50); outline: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
   }
   .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--purple); background: white; }
   .form-group textarea { resize: vertical; min-height: 120px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .btn-submit {
-    width: 100%; background: var(--navy); color: white; border: none; cursor: pointer;
-    padding: 1rem; border-radius: 12px; font-family: var(--font-body); font-size: 1rem;
-    font-weight: 700; transition: background 0.2s, transform 0.2s;
+    width: 100%; background: linear-gradient(135deg, var(--navy), var(--purple)); color: white; border: none; cursor: pointer;
+    padding: 1rem; border-radius: 14px; font-family: var(--font-body); font-size: 1rem;
+    font-weight: 700; transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 12px 24px rgba(15,31,61,0.16);
   }
   .btn-submit:hover { background: var(--purple); transform: translateY(-2px); }
 
@@ -657,9 +801,9 @@
   .footer-brand p { font-size: 0.875rem; opacity: 0.7; line-height: 1.7; margin: 1rem 0; }
   .footer-brand .socials { display: flex; gap: 10px; margin-top: 1rem; }
   .social-btn {
-    width: 38px; height: 38px; border-radius: 10px;
-    background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; cursor: pointer; transition: background 0.2s;
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(255,255,255,0.1); display: inline-flex; align-items: center; justify-content: center;
+    font-size: 1rem; cursor: pointer; transition: background 0.2s, transform 0.2s;
     text-decoration: none; color: white;
   }
   .social-btn:hover { background: var(--purple); }
@@ -697,6 +841,10 @@
   [data-aos="zoom-in"].aos-visible { transform: scale(1); }
 
   /* ─── RESPONSIVE ─── */
+  @media (max-width: 1440px) {
+    .hero-content { gap: 2rem; padding-bottom: 7rem; }
+    .container { max-width: 1180px; }
+  }
   @media (max-width: 1024px) {
     .impact-grid { grid-template-columns: repeat(2, 1fr); }
     .nosotras-grid { grid-template-columns: 1fr; }
@@ -706,10 +854,14 @@
     .contacto-grid { grid-template-columns: 1fr; }
     .docs-grid { grid-template-columns: 1fr 1fr; }
     .eje-panel.active { grid-template-columns: 1fr; }
+    .hero-content { grid-template-columns: 1fr; padding-bottom: 6rem; }
+    .hero-copy { text-align: center; }
+    .hero-btns { justify-content: center; }
+    .hero-highlights { justify-content: center; }
   }
   @media (max-width: 768px) {
     .nav-links { display: none; }
-    .hamburger { display: block; }
+    .hamburger { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; }
     .hero-stats { position: relative; }
     .stat-item { padding: 1rem 1.5rem; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
     .stat-item:last-child { border-bottom: none; }
@@ -720,6 +872,7 @@
     .form-row { grid-template-columns: 1fr; }
     .impact-grid { grid-template-columns: 1fr 1fr; }
     section { padding: 4rem 1.25rem; }
+    .hero-content { padding: 0 1rem 6rem; }
   }
 
   @media (max-width: 640px) {
@@ -728,12 +881,19 @@
     .logo-text strong { font-size: 0.9rem; }
     .logo-text span { font-size: 0.62rem; }
     .mobile-menu { padding: 96px 1.25rem 1.5rem; }
-    .hero-content { padding: 0 1rem; }
+    .hero-content { padding: 0 1rem 6rem; gap: 1.25rem; }
+    .hero-copy { text-align: center; }
     .hero-badge { font-size: 0.68rem; padding: 0.45rem 0.95rem; }
     .hero-title { font-size: clamp(1.8rem, 8vw, 2.7rem); line-height: 1.12; }
-    .hero-sub { font-size: 0.95rem; margin-bottom: 1.75rem; }
-    .hero-btns { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+    .hero-sub { font-size: 0.95rem; margin: 0 auto 1.75rem; }
+    .hero-btns { justify-content: center; flex-direction: column; align-items: stretch; gap: 0.75rem; }
     .hero-btns a { width: 100%; text-align: center; }
+    .hero-highlights { justify-content: center; }
+    .hero-visual { padding: 0.95rem; }
+    .hero-gallery-card { width: min(260px, 76vw); }
+    .hero-gallery-card img { height: 220px; }
+    .hero-gallery-card-body h3 { font-size: 1rem; }
+    .hero-gallery-card-body p { font-size: 0.84rem; }
     .hero-stats { flex-direction: column; }
     .hero-stats .stat-item { padding: 1rem 1.25rem; }
     .scroll-indicator { bottom: 24px; font-size: 0.65rem; }
@@ -948,9 +1108,10 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Saltar al contenido principal</a>
 
 <!-- NAVBAR -->
-<nav id="navbar">
+<nav id="navbar" aria-label="Navegación principal">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">
       <img src="data:image/jpeg;base64,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" alt="Fundación Puertas de Colores" style="height:52px;width:auto;">
@@ -968,14 +1129,14 @@
       <li><a href="#contacto">Contacto</a></li>
       <li><a href="#contacto" class="btn-donar">Quiero ayudar ♥</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="Menú">
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
 <!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" aria-label="Menú móvil">
   <a href="#nosotras" onclick="closeMobile()">Nosotras</a>
   <a href="#ejes" onclick="closeMobile()">Ejes Temáticos</a>
   <a href="#proyectos" onclick="closeMobile()">Proyectos</a>
@@ -985,8 +1146,9 @@
   <a href="#contacto" style="color:var(--gold); font-weight:700;" onclick="closeMobile()">♥ Quiero ayudar</a>
 </div>
 
+<main id="main-content">
 <!-- HERO -->
-<section id="hero">
+<section id="hero" aria-labelledby="hero-title">
   <div class="hero-bg"></div>
   <div class="hero-pattern"></div>
   <div class="hero-orbs">
@@ -995,20 +1157,52 @@
     <div class="orb orb-3"></div>
   </div>
   <div class="hero-content">
-    <div class="hero-badge">
-      <div class="hero-badge-dot"></div>
-      Bogotá, Colombia — Desde 2020
+    <div class="hero-copy">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        Bogotá, Colombia — Desde 2020
+      </div>
+      <h1 class="hero-title" id="hero-title">
+        Transformamos vidas,<br>
+        abrimos <em>puertas de oportunidad</em>
+      </h1>
+      <p class="hero-sub">
+        Trabajamos con mujeres, niñas y comunidades vulnerables para construir territorios más justos, seguros y sostenibles.
+      </p>
+      <div class="hero-btns">
+        <a href="#proyectos" class="btn-primary">Conoce nuestros proyectos</a>
+        <a href="#contacto" class="btn-outline">Quiero ayudar</a>
+      </div>
+      <div class="hero-highlights">
+        <span>💜 Empoderamiento</span>
+        <span>🌿 Derechos</span>
+        <span>🤝 Territorio</span>
+      </div>
     </div>
-    <h1 class="hero-title">
-      Transformamos vidas,<br>
-      abrimos <em>puertas de oportunidad</em>
-    </h1>
-    <p class="hero-sub">
-      Trabajamos con mujeres, niñas y comunidades vulnerables para construir territorios más justos, seguros y sostenibles.
-    </p>
-    <div class="hero-btns">
-      <a href="#proyectos" class="btn-primary">Conoce nuestros proyectos</a>
-      <a href="#contacto" class="btn-outline">Quiero ayudar</a>
+
+    <div class="hero-visual" aria-label="Galería de imágenes de la Fundación">
+      <div class="hero-visual-header">
+        <span class="section-tag">Imágenes de la fundación</span>
+        <p>Deslízalas hacia los lados para ver más de nuestra historia y nuestro trabajo.</p>
+      </div>
+      <div class="hero-gallery">
+        <div class="hero-gallery-track">
+          <article class="hero-gallery-card">
+            <img src="portada.jpeg" alt="Portada de la Fundación Puertas de Colores" loading="eager">
+            <div class="hero-gallery-card-body">
+              <h3>Impacto comunitario</h3>
+              <p>Procesos de cuidado, formación y dignidad para mujeres y niñas en territorio.</p>
+            </div>
+          </article>
+          <article class="hero-gallery-card">
+            <img src="portada 2.jpeg" alt="Segunda portada de la Fundación Puertas de Colores" loading="eager">
+            <div class="hero-gallery-card-body">
+              <h3>Visión de futuro</h3>
+              <p>Una organización que abre puertas de oportunidad y fortalece la esperanza.</p>
+            </div>
+          </article>
+        </div>
+      </div>
     </div>
   </div>
   <div class="scroll-indicator">
@@ -1344,11 +1538,11 @@
           </div>
           <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:1.25rem;">
             <div style="flex:1; min-width:180px;">
-              <img src="imagen2.jpeg" alt="Salud Menstrual - imagen izquierda" style="width:100%; border-radius:18px; object-fit:cover; aspect-ratio:4/3; box-shadow:0 14px 40px rgba(0,0,0,0.12);">
+              <img src="imagen2.jpeg" alt="Salud Menstrual - imagen izquierda" loading="lazy" style="width:100%; border-radius:18px; object-fit:cover; aspect-ratio:4/3; box-shadow:0 14px 40px rgba(0,0,0,0.12);">
             </div>
             <div style="flex:1; min-width:180px;">
               <a href="proyecto_salud_mestrual.html" style="display:block; text-decoration:none; color:inherit;">
-                <img src="imagen1.jpeg" alt="Ver proyecto Salud Menstrual" style="width:100%; border-radius:18px; object-fit:cover; aspect-ratio:4/3; box-shadow:0 14px 40px rgba(0,0,0,0.12);">
+                <img src="imagen1.jpeg" alt="Ver proyecto Salud Menstrual" loading="lazy" style="width:100%; border-radius:18px; object-fit:cover; aspect-ratio:4/3; box-shadow:0 14px 40px rgba(0,0,0,0.12);">
                 <div style="margin-top:0.9rem; padding:0.9rem 1rem; border-radius:18px; background:white; color:var(--navy); font-weight:700; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.1);">Ver proyecto Salud Menstrual</div>
               </a>
             </div>
@@ -1397,11 +1591,11 @@
           </div>
           <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:1.25rem;">
             <div style="flex:1; min-width:180px;">
-              <img src="imagen3.jpeg" alt="Dignidad Menstrual - imagen 3" style="width:100%; border-radius:18px; object-fit:cover; aspect-ratio:4/3; box-shadow:0 14px 40px rgba(0,0,0,0.12);">
+              <img src="imagen3.jpeg" alt="Dignidad Menstrual - imagen 3" loading="lazy" style="width:100%; border-radius:18px; object-fit:cover; aspect-ratio:4/3; box-shadow:0 14px 40px rgba(0,0,0,0.12);">
             </div>
             <div style="flex:1; min-width:180px;">
               <a href="proyecto_dignidad_menstrual.html" style="display:block; text-decoration:none; color:inherit;">
-                <img src="imagen4.jpeg" alt="Ver proyecto Dignidad Menstrual" style="width:100%; border-radius:18px; object-fit:cover; aspect-ratio:4/3; box-shadow:0 14px 40px rgba(0,0,0,0.12);">
+                <img src="imagen4.jpeg" alt="Ver proyecto Dignidad Menstrual" loading="lazy" style="width:100%; border-radius:18px; object-fit:cover; aspect-ratio:4/3; box-shadow:0 14px 40px rgba(0,0,0,0.12);">
                 <div style="margin-top:0.9rem; padding:0.9rem 1rem; border-radius:18px; background:white; color:var(--navy); font-weight:700; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.1);">Ver proyecto Dignidad Menstrual</div>
               </a>
             </div>
@@ -1793,9 +1987,10 @@
     </div>
   </div>
 </footer>
+</main>
 
 <!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/573107986247" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+<a href="https://wa.me/573107986247" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
@@ -1809,7 +2004,10 @@ window.addEventListener('scroll', () => {
 
 // ── HAMBURGER ──
 document.getElementById('hamburger').addEventListener('click', () => {
-  document.getElementById('mobileMenu').classList.toggle('open');
+  const menu = document.getElementById('mobileMenu');
+  const isOpen = menu.classList.toggle('open');
+  document.getElementById('hamburger').setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  document.getElementById('hamburger').setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
 });
 function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
 
