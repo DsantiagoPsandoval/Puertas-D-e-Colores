@@ -119,7 +119,7 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 0 2rem;
     background: transparent;
-    transition: background 0.4s, box-shadow 0.4s;
+    transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
   }
   nav.scrolled {
     background: rgba(15,31,61,0.97);
@@ -144,20 +144,57 @@
   .logo-text { color: var(--white); }
   .logo-text strong { display: block; font-family: var(--font-display); font-size: 1rem; font-weight: 700; line-height: 1.2; }
   .logo-text span { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8; }
+  .nav-shell {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 16px 45px rgba(15,31,61,0.16);
+  }
+  .nav-liquid {
+    position: absolute;
+    top: 0.35rem;
+    left: 0.35rem;
+    height: calc(100% - 0.7rem);
+    border-radius: 999px;
+    background: linear-gradient(120deg, rgba(228,194,42,0.95), rgba(117,60,148,0.9), rgba(34,211,238,0.82));
+    box-shadow: 0 16px 34px rgba(15,31,61,0.18);
+    transition: transform 0.3s ease, width 0.3s ease, opacity 0.3s ease;
+    opacity: 0.92;
+    pointer-events: none;
+    animation: liquidPulse 5s ease-in-out infinite alternate;
+  }
   .nav-links {
-    display: flex; align-items: center; gap: 1.5rem; list-style: none;
+    position: relative; z-index: 2;
+    display: flex; align-items: center; gap: 0.35rem; list-style: none;
   }
+  .nav-links li { position: relative; }
   .nav-links a {
+    display: inline-flex; align-items: center; justify-content: center;
     color: rgba(255,255,255,0.9);
-    text-decoration: none; font-size: 0.875rem; font-weight: 500;
+    text-decoration: none; font-size: 0.875rem; font-weight: 600;
     letter-spacing: 0.02em;
-    transition: color 0.2s;
+    padding: 0.7rem 0.95rem;
+    border-radius: 999px;
+    transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+    white-space: nowrap;
   }
-  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--navy);
+    background: rgba(255,255,255,0.96);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(15,31,61,0.14);
+  }
   .btn-donar {
     background: var(--gold); color: var(--navy) !important;
     padding: 0.5rem 1.25rem; border-radius: 50px;
     font-weight: 700 !important; transition: transform 0.2s, box-shadow 0.2s !important;
+    margin-left: 0.2rem;
   }
   .btn-donar:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(245,158,11,0.4); }
   .nav-links a, .mobile-menu a, .btn-donar {
@@ -179,6 +216,10 @@
   .mobile-menu a {
     color: white; text-decoration: none; font-size: 1.25rem; font-weight: 500;
     border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;
+  }
+  @keyframes liquidPulse {
+    0% { transform: scaleX(0.98) scaleY(0.98); }
+    100% { transform: scaleX(1.04) scaleY(1.04); }
   }
 
   /* ─── HERO ─── */
@@ -1129,15 +1170,18 @@
         <span>Puertas de Colores</span>
       </div>
     </a>
-    <ul class="nav-links">
-      <li><a href="#nosotras">Nosotras</a></li>
-      <li><a href="#ejes">Ejes Temáticos</a></li>
-      <li><a href="#proyectos">Proyectos</a></li>
-      <li><a href="#blog">Blog</a></li>
-      <li><a href="#transparencia">Transparencia</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-      <li><a href="#contacto" class="btn-donar">Quiero ayudar ♥</a></li>
-    </ul>
+    <div class="nav-shell">
+      <span class="nav-liquid" id="navLiquid"></span>
+      <ul class="nav-links">
+        <li><a href="#nosotras" data-section="nosotras">Nosotras</a></li>
+        <li><a href="#ejes" data-section="ejes">Ejes Temáticos</a></li>
+        <li><a href="#proyectos" data-section="proyectos">Proyectos</a></li>
+        <li><a href="#blog" data-section="blog">Blog</a></li>
+        <li><a href="#transparencia" data-section="transparencia">Transparencia</a></li>
+        <li><a href="#contacto" data-section="contacto">Contacto</a></li>
+        <li><a href="#contacto" class="btn-donar" data-section="contacto">Quiero ayudar ♥</a></li>
+      </ul>
+    </div>
     <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
@@ -2011,6 +2055,60 @@ window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
 });
 
+// ── LIQUID NAV ──
+const navLinks = [...document.querySelectorAll('.nav-links a')];
+const navLiquid = document.getElementById('navLiquid');
+const navShell = document.querySelector('.nav-shell');
+
+function updateNavLiquid(link) {
+  if (!navLiquid || !navShell || !link) return;
+  const shellRect = navShell.getBoundingClientRect();
+  const linkRect = link.getBoundingClientRect();
+  navLiquid.style.left = `${linkRect.left - shellRect.left}px`;
+  navLiquid.style.top = `${linkRect.top - shellRect.top}px`;
+  navLiquid.style.width = `${linkRect.width}px`;
+  navLiquid.style.height = `${linkRect.height}px`;
+}
+
+function setActiveNavLink() {
+  const scrollY = window.scrollY + 140;
+  let currentId = '';
+  document.querySelectorAll('main section[id]').forEach(section => {
+    if (scrollY >= section.offsetTop) currentId = section.id;
+  });
+
+  navLinks.forEach(link => {
+    const shouldBeActive = link.getAttribute('href') === `#${currentId}`;
+    link.classList.toggle('active', shouldBeActive);
+    if (shouldBeActive) updateNavLiquid(link);
+  });
+
+  if (!navLinks.some(link => link.classList.contains('active')) && navLinks[0]) {
+    updateNavLiquid(navLinks[0]);
+  }
+}
+
+navLinks.forEach(link => {
+  link.addEventListener('mouseenter', () => updateNavLiquid(link));
+  link.addEventListener('focus', () => updateNavLiquid(link));
+  link.addEventListener('click', () => {
+    navLinks.forEach(item => item.classList.remove('active'));
+    link.classList.add('active');
+    updateNavLiquid(link);
+  });
+});
+
+navShell?.addEventListener('mouseleave', () => {
+  const activeLink = navLinks.find(link => link.classList.contains('active')) || navLinks[0];
+  if (activeLink) updateNavLiquid(activeLink);
+});
+
+window.addEventListener('scroll', setActiveNavLink, { passive: true });
+window.addEventListener('resize', () => {
+  const activeLink = navLinks.find(link => link.classList.contains('active')) || navLinks[0];
+  if (activeLink) updateNavLiquid(activeLink);
+});
+
 // ── HAMBURGER ──
 document.getElementById('hamburger').addEventListener('click', () => {
   const menu = document.getElementById('mobileMenu');
@@ -2019,6 +2117,8 @@ document.getElementById('hamburger').addEventListener('click', () => {
   document.getElementById('hamburger').setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
 });
 function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+setActiveNavLink();
 
 // ── AOS (Intersection Observer) ──
 const observer = new IntersectionObserver((entries) => {
